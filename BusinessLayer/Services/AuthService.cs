@@ -1,7 +1,9 @@
 ﻿using System;
 using BusinessLayer.Exceptions;
 using BusinessLayer.Utilities;
+using BusinessLayer.Validators;
 using DataLayer.Repositories;
+using EntitiesLayer.DTOs;
 using EntitiesLayer.Entities;
 
 namespace BusinessLayer.Services
@@ -15,21 +17,32 @@ namespace BusinessLayer.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public Usuario Login(string nombreUsuario, string contraseña)
+        public UserDTO Login(string nombreUsuario, string contraseña)
         {
             string hashedPassword = PasswordEncryptor.Encryptor(contraseña);
-            Usuario usuario = _usuarioRepository.Login(nombreUsuario, hashedPassword);
-            if (usuario == null)
+            UserDTO userDto = _usuarioRepository.Login(nombreUsuario, hashedPassword);
+            if (userDto == null)
             {
                 throw new BusinessException("Nombre de usuario o contraseña incorrectos");
             }
-            return usuario;
+            return userDto;
         }
 
-        public bool UpdateCredentials(int id, string nombreUsuario, string contraseña)
+        public bool UpdateCredentials(int id, Usuario usuario)
         {
-            string hashedPassword = PasswordEncryptor.Encryptor(contraseña);
-            return _usuarioRepository.UpdateCredentials(id, nombreUsuario, hashedPassword);
+            try
+            {
+                UpdatePasswordValidator.Validate(usuario);
+
+            }
+            catch (ArgumentException ex)
+            {
+                throw new ValidationException("La contraseña debe tener una longitud no menor a 8 digitos");
+            }
+            
+            usuario.Contraseña = PasswordEncryptor.Encryptor(usuario.Contraseña);
+            
+            return _usuarioRepository.UpdateCredentials(id, usuario);
         }
     }
 }

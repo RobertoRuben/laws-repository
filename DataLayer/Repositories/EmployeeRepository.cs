@@ -4,11 +4,12 @@ using System.Data;
 using System.Data.SqlClient;
 using EntitiesLayer.Entities;
 using DataLayer.Config;
+using EntitiesLayer.DTOs;
 
 
 namespace DataLayer.Repositories
 {
-    public class EmployeeRepository : IRepository<Trabajador>
+    public class EmployeeRepository : IEmployeeRepository
     {
         public int Insert(Trabajador entity, int codUsuario)
         {
@@ -118,16 +119,20 @@ namespace DataLayer.Repositories
             }
         }
 
-        public List<Trabajador> GetAll()
+        public List<Trabajador> GetAll(int pageSize, int pageNumber)
         {
             var trabajadores = new List<Trabajador>();
 
             using (var conn = Conexion.getInstancia().CrearConexion())
             {
-                SqlCommand cmd = new SqlCommand("sp_Trabajador_Listar", conn)
+                SqlCommand cmd = new SqlCommand("sp_Trabajador_Listar_Paginacion", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+                
+                // Configura los parámetros para la paginación
+                cmd.Parameters.AddWithValue("@PageSize", pageSize);
+                cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
 
                 try
                 {
@@ -244,6 +249,45 @@ namespace DataLayer.Repositories
                     if (conn.State == ConnectionState.Open) conn.Close();
                 }
             }
+        }
+
+        public List<EmployeeDTO> GetNames()
+        {
+            List<EmployeeDTO> employees = new List<EmployeeDTO>();
+
+            using (var conn = Conexion.getInstancia().CrearConexion())
+            {
+                SqlCommand cmd = new SqlCommand("sp_Trabajador_ObtenerNombreCompleto", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                try
+                {
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            employees.Add(new EmployeeDTO
+                            {
+                                CodTrabajador = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
+                                FullName = reader.GetString(reader.GetOrdinal("FullName"))
+                            });
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open) conn.Close();
+                }
+            }
+
+            return employees;
         }
     }
 }

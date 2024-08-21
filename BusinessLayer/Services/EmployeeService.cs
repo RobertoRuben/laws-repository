@@ -5,15 +5,16 @@ using System.Runtime.InteropServices;
 using BusinessLayer.Exceptions;
 using BusinessLayer.Validators;
 using DataLayer.Repositories;
+using EntitiesLayer.DTOs;
 using EntitiesLayer.Entities;
 
 namespace BusinessLayer.Services
 {
     public class EmployeeService
     {
-        private readonly IRepository<Trabajador> _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeService(IRepository<Trabajador> employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
@@ -33,6 +34,7 @@ namespace BusinessLayer.Services
             {
                 throw new BusinessException("El DNI ingresado ya se encuentra registrado en la base de datos");
             }
+            
 
             int idEmployee = _employeeRepository.Insert(trabajador, codUsuario);
 
@@ -49,10 +51,6 @@ namespace BusinessLayer.Services
             {
                 throw new BusinessException(ex.Message);
             }
-            if (_employeeRepository.Exists(trabajador.Dni))
-            {
-                throw new BusinessException("No se puede actualizar porque el dni ingresado ya existe");
-            }
             return _employeeRepository.Update(trabajador, codUsuario);
         }
 
@@ -61,9 +59,9 @@ namespace BusinessLayer.Services
             return _employeeRepository.Delete(id, codUsuario);
         }
 
-        public List<Trabajador> GetAll()
+        public List<Trabajador> GetAll(int pageSize, int pageNumber)
         {
-            return _employeeRepository.GetAll();
+            return _employeeRepository.GetAll(pageSize, pageNumber);
         }
 
         public IEnumerable<Trabajador> FindBy(String pattern)
@@ -76,6 +74,11 @@ namespace BusinessLayer.Services
             }
 
             return employee;
+        }
+
+        public List<EmployeeDTO> GetNames()
+        {
+            return _employeeRepository.GetNames();
         }
     }
 }

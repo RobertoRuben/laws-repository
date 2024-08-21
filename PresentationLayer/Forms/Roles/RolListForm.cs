@@ -31,7 +31,6 @@ namespace PresentationLayer.Forms.Roles
             
             roleDataForm.operacion = "Insertar";
             roleDataForm.idUsuario = idUsuario;
-            roleDataForm.idRol = Convert.ToInt32(dgvRoles.CurrentRow.Cells[0].Value);
             this.mainForm.SetTransparency(true); 
             roleDataForm.ShowDialog();
             this.mainForm.SetTransparency(false); 
@@ -46,6 +45,7 @@ namespace PresentationLayer.Forms.Roles
             
             roleDataForm.operacion = "Actualizar";
             roleDataForm.idUsuario = idUsuario;
+            roleDataForm.idRol = Convert.ToInt32(dgvRoles.CurrentRow.Cells[0].Value);
             roleDataForm.tboxNombreRol.Texts = dgvRoles.CurrentRow.Cells[1].Value.ToString().Trim();
             this.mainForm.SetTransparency(true); 
             roleDataForm.ShowDialog();
@@ -123,6 +123,10 @@ namespace PresentationLayer.Forms.Roles
         private void tboxBusqueda_TextChanged(object sender, EventArgs e)
         {
             BuscarRoles();
+        }
+        private void btnLimpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            tboxBusqueda.Clear();
         }
     }
 }

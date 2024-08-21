@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Data;
 using System.Windows.Forms;
 using BusinessLayer.Exceptions;
 using BusinessLayer.Services;
+using EntitiesLayer.DTOs;
 using EntitiesLayer.Entities;
 using PresentationLayer.Forms.Common;
+using Newtonsoft.Json;
 
 namespace Presentacion.Formularios.Login
 {
@@ -33,14 +34,19 @@ namespace Presentacion.Formularios.Login
                 string nombreUsuario = tboxUsuario.Texts.Trim();
                 string contraseña = tboxContraseña.Texts.Trim();
 
-                Usuario usuario = _authService.Login(nombreUsuario, contraseña);
+                UserDTO userDto = _authService.Login(nombreUsuario, contraseña);
+                
+                // Serializa el objeto usuario a formato JSON para mostrarlo
+                string usuarioJson = JsonConvert.SerializeObject(userDto, Formatting.Indented);
+                MessageBox.Show(usuarioJson, "Datos del Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 OkMessage("Inicio de sesion exitoso");
                 
                 MainForm mainForm = new MainForm();
-                mainForm.nombreTrabajador = usuario.Trabajador.Nombre;
-                mainForm.nombreUsuario = usuario.NombreUsuario;
-                mainForm.nombreRol = usuario.Rol.NombreDeRol;
-                mainForm.idUsuario = usuario.CodUsuario;
+                mainForm.nombreTrabajador = userDto.NombreTrabajador;
+                mainForm.nombreUsuario = userDto.NombreUsuario;
+                mainForm.nombreRol = userDto.NombreRol;
+                mainForm.idUsuario = userDto.CodUsuario;
                 mainForm.Show();
                 this.Hide();
             }

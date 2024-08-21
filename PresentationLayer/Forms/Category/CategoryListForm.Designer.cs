@@ -158,6 +158,7 @@ namespace Presentacion.Formularios.CategoriaNormas
             this.btnLimpiarBusqueda.Size = new System.Drawing.Size(42, 35);
             this.btnLimpiarBusqueda.TabIndex = 55;
             this.btnLimpiarBusqueda.UseVisualStyleBackColor = false;
+            this.btnLimpiarBusqueda.Click += new System.EventHandler(this.btnLimpiarBusqueda_Click);
             // 
             // label13
             // 

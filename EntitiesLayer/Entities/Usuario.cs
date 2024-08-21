@@ -7,8 +7,6 @@
         public int CodRol { get; set; }
         public string NombreUsuario { get; set; }
         public string Contraseña { get; set; }
-        public int Estado { get; set; }
-        public Trabajador Trabajador { get; set; }
-        public Rol Rol { get; set; }
+        public string Estado { get; set; }
     }
 }

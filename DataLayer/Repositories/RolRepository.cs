@@ -130,7 +130,7 @@ namespace DataLayer.Repositories
                             var rol = new Rol
                             {
                                 CodRol = reader.GetInt32(reader.GetOrdinal("CodRol")),
-                                NombreDeRol = reader.GetString(reader.GetOrdinal("Nombre del Rol"))
+                                NombreDeRol = reader.GetString(reader.GetOrdinal("NombreRol"))
                             };
 
                             roles.Add(rol);

@@ -189,6 +189,7 @@ namespace PresentationLayer.Forms.Roles
             this.btnLimpiarBusqueda.Size = new System.Drawing.Size(42, 35);
             this.btnLimpiarBusqueda.TabIndex = 54;
             this.btnLimpiarBusqueda.UseVisualStyleBackColor = false;
+            this.btnLimpiarBusqueda.Click += new System.EventHandler(this.btnLimpiarBusqueda_Click);
             // 
             // label13
             // 

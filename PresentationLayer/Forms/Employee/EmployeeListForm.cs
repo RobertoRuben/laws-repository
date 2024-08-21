@@ -14,8 +14,11 @@ namespace PresentationLayer.Forms.Employee
         private string operacion = "";
         private EmployeeService _employeeService;
         public int idUsuario;
+        
+        private int currentPage = 1;
+        private int pageSize = 20; 
 
-        public EmployeeListForm(MainForm main, IRepository<Trabajador> employeeRepository)
+        public EmployeeListForm(MainForm main, IEmployeeRepository employeeRepository)
         {
             InitializeComponent();
             _employeeService = new EmployeeService(employeeRepository);
@@ -25,10 +28,29 @@ namespace PresentationLayer.Forms.Employee
             FormatoDataGrid();
         }
 
-        public void CargarDatagrid()
+        public void CargarDatagrid(int pageNumber = 1)
         {
-            dgvEmployees.DataSource = _employeeService.GetAll();
-            lblResultados.Text = "Registros mostrados: " + Convert.ToString(dgvEmployees.Rows.Count) + " de 635";
+            currentPage = pageNumber;
+            var trabajadores = _employeeService.GetAll(pageSize, pageNumber); 
+
+            dgvEmployees.DataSource = trabajadores; 
+            
+            btnNext.Enabled = trabajadores.Count == pageSize;
+            
+            lblResultados.Text = $"Mostrando página: {currentPage}";
+        }
+        
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            CargarDatagrid(currentPage + 1);
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                CargarDatagrid(currentPage - 1);
+            }
         }
         private void FormatoDataGrid()
         {
@@ -74,6 +96,79 @@ namespace PresentationLayer.Forms.Employee
         private void tboxBusqueda_TextChanged(object sender, EventArgs e)
         {
             BuscarCategoria();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            EmployeeService employeeService = new EmployeeService(new EmployeeRepository());
+            EmployeeDataForm employeeDataForm = new EmployeeDataForm(employeeService);
+            employeeDataForm.operacion = "Insertar";
+            employeeDataForm.idUsuario = idUsuario;
+            this.mainForm.SetTransparency(true);
+            employeeDataForm.ShowDialog();
+            CargarDatagrid();
+            this.mainForm.SetTransparency(false); 
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            EmployeeService employeeService = new EmployeeService(new EmployeeRepository());
+            EmployeeDataForm employeeDataForm = new EmployeeDataForm(employeeService);
+            employeeDataForm.operacion = "Actualizar";
+            employeeDataForm.idUsuario = idUsuario;
+            
+            employeeDataForm.idEmpleado = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
+            employeeDataForm.tboxDni.Texts = dgvEmployees.CurrentRow.Cells[1].Value.ToString().Trim();
+            employeeDataForm.tboxNombre.Texts = dgvEmployees.CurrentRow.Cells[2].Value.ToString().Trim();
+            employeeDataForm.tboxApellidoPaterno.Texts = dgvEmployees.CurrentRow.Cells[3].Value.ToString().Trim();
+            employeeDataForm.tboxApellidoMaterno.Texts = dgvEmployees.CurrentRow.Cells[4].Value.ToString().Trim();
+            
+            string estado = dgvEmployees.CurrentRow.Cells[5].Value.ToString().Trim();
+            employeeDataForm.rbtnMasculino.Checked = estado == "M";
+            employeeDataForm.rbtnFemenino.Checked = estado == "F";
+            
+            this.mainForm.SetTransparency(true);
+            employeeDataForm.ShowDialog();
+            CargarDatagrid();
+            this.mainForm.SetTransparency(false); 
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvEmployees.CurrentRow != null)
+            {
+                int idEmployee = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
+                DialogResult result = MessageBox.Show("¿Deseas eliminar a este trabajador?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        bool isDeleted = _employeeService.Delete(idEmployee, idUsuario);
+                        if (isDeleted)
+                        {
+                            OkMessage("Trabajador eliminada exitosamente.");
+                            CargarDatagrid();
+                        }
+                        else
+                        {
+                            ErrorMessage("Error al eliminar el trabajador.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorMessage("Error al eliminar el la categoria: " + ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                ErrorMessage("Seleccione un trabajador para eliminar.");
+            }
+        }
+
+        private void btnLimpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            tboxBusqueda.Clear();
         }
     }
 }

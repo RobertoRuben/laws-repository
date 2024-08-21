@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace PresentationLayer.Forms.Employee
+namespace PresentationLayer.Forms.User
 {
-    partial class EmployeeListForm
+    partial class UserListForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,14 +39,12 @@ namespace PresentationLayer.Forms.Employee
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblResultados = new System.Windows.Forms.Label();
-            this.dgvEmployees = new System.Windows.Forms.DataGridView();
-            this.btnEliminar = new FontAwesome.Sharp.IconButton();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.btnInhabilitar = new FontAwesome.Sharp.IconButton();
             this.btnModificar = new FontAwesome.Sharp.IconButton();
             this.btnNuevo = new FontAwesome.Sharp.IconButton();
-            this.btnNext = new FontAwesome.Sharp.IconButton();
-            this.btnPrevious = new FontAwesome.Sharp.IconButton();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -56,10 +54,10 @@ namespace PresentationLayer.Forms.Employee
             this.panel2.Controls.Add(this.tboxBusqueda);
             this.panel2.Controls.Add(this.btnLimpiarBusqueda);
             this.panel2.Controls.Add(this.label13);
-            this.panel2.Location = new System.Drawing.Point(13, 12);
+            this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1020, 46);
-            this.panel2.TabIndex = 69;
+            this.panel2.TabIndex = 63;
             // 
             // tboxBusqueda
             // 
@@ -121,33 +119,33 @@ namespace PresentationLayer.Forms.Employee
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
             this.label10.Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(13, 72);
+            this.label10.Location = new System.Drawing.Point(12, 73);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(233, 22);
-            this.label10.TabIndex = 71;
-            this.label10.Text = "Trabajadores Registrados";
+            this.label10.Size = new System.Drawing.Size(189, 22);
+            this.label10.TabIndex = 70;
+            this.label10.Text = "Usuarios Registrados";
             // 
             // lblResultados
             // 
             this.lblResultados.AutoSize = true;
             this.lblResultados.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.lblResultados.Location = new System.Drawing.Point(13, 420);
+            this.lblResultados.Location = new System.Drawing.Point(12, 421);
             this.lblResultados.Name = "lblResultados";
             this.lblResultados.Size = new System.Drawing.Size(150, 20);
-            this.lblResultados.TabIndex = 70;
+            this.lblResultados.TabIndex = 69;
             this.lblResultados.Text = "Registro mostrados:";
             // 
-            // dgvEmployees
+            // dgvUsers
             // 
-            this.dgvEmployees.AllowUserToAddRows = false;
-            this.dgvEmployees.AllowUserToDeleteRows = false;
-            this.dgvEmployees.AllowUserToOrderColumns = true;
-            this.dgvEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvEmployees.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvEmployees.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
-            this.dgvEmployees.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvEmployees.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.AllowUserToDeleteRows = false;
+            this.dgvUsers.AllowUserToOrderColumns = true;
+            this.dgvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(245)))));
+            this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(210)))), ((int)(((byte)(218)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
@@ -155,46 +153,46 @@ namespace PresentationLayer.Forms.Employee
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(210)))), ((int)(((byte)(218)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvEmployees.ColumnHeadersHeight = 40;
-            this.dgvEmployees.EnableHeadersVisualStyles = false;
-            this.dgvEmployees.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(225)))), ((int)(((byte)(230)))));
-            this.dgvEmployees.Location = new System.Drawing.Point(13, 94);
-            this.dgvEmployees.Name = "dgvEmployees";
-            this.dgvEmployees.ReadOnly = true;
-            this.dgvEmployees.RowHeadersVisible = false;
-            this.dgvEmployees.RowHeadersWidth = 35;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvUsers.ColumnHeadersHeight = 40;
+            this.dgvUsers.EnableHeadersVisualStyles = false;
+            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(225)))), ((int)(((byte)(230)))));
+            this.dgvUsers.Location = new System.Drawing.Point(12, 95);
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.ReadOnly = true;
+            this.dgvUsers.RowHeadersVisible = false;
+            this.dgvUsers.RowHeadersWidth = 35;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(251)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 10F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(225)))), ((int)(((byte)(230)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvEmployees.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(1017, 308);
-            this.dgvEmployees.TabIndex = 68;
+            this.dgvUsers.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.Size = new System.Drawing.Size(1017, 308);
+            this.dgvUsers.TabIndex = 68;
             // 
-            // btnEliminar
+            // btnInhabilitar
             // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnEliminar.IconColor = System.Drawing.Color.White;
-            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminar.IconSize = 32;
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(319, 558);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(148, 40);
-            this.btnEliminar.TabIndex = 66;
-            this.btnEliminar.Text = "  Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.btnInhabilitar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnInhabilitar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.btnInhabilitar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.btnInhabilitar.FlatAppearance.BorderSize = 0;
+            this.btnInhabilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInhabilitar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnInhabilitar.ForeColor = System.Drawing.Color.White;
+            this.btnInhabilitar.IconChar = FontAwesome.Sharp.IconChar.UserLargeSlash;
+            this.btnInhabilitar.IconColor = System.Drawing.Color.White;
+            this.btnInhabilitar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInhabilitar.IconSize = 32;
+            this.btnInhabilitar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInhabilitar.Location = new System.Drawing.Point(318, 559);
+            this.btnInhabilitar.Name = "btnInhabilitar";
+            this.btnInhabilitar.Size = new System.Drawing.Size(148, 40);
+            this.btnInhabilitar.TabIndex = 66;
+            this.btnInhabilitar.Text = "Inhabilitar";
+            this.btnInhabilitar.UseVisualStyleBackColor = false;
+            this.btnInhabilitar.Click += new System.EventHandler(this.btnInhabilitar_Click);
             // 
             // btnModificar
             // 
@@ -205,12 +203,12 @@ namespace PresentationLayer.Forms.Employee
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnModificar.ForeColor = System.Drawing.Color.White;
-            this.btnModificar.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.btnModificar.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
             this.btnModificar.IconColor = System.Drawing.Color.White;
             this.btnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnModificar.IconSize = 32;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(165, 558);
+            this.btnModificar.Location = new System.Drawing.Point(164, 559);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(148, 40);
             this.btnModificar.TabIndex = 67;
@@ -227,12 +225,12 @@ namespace PresentationLayer.Forms.Employee
             this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNuevo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnNuevo.ForeColor = System.Drawing.Color.White;
-            this.btnNuevo.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnNuevo.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
             this.btnNuevo.IconColor = System.Drawing.Color.White;
             this.btnNuevo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnNuevo.IconSize = 32;
             this.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNuevo.Location = new System.Drawing.Point(11, 558);
+            this.btnNuevo.Location = new System.Drawing.Point(10, 559);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(148, 40);
             this.btnNuevo.TabIndex = 65;
@@ -240,74 +238,40 @@ namespace PresentationLayer.Forms.Employee
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.IconChar = FontAwesome.Sharp.IconChar.ChevronRight;
-            this.btnNext.IconColor = System.Drawing.Color.DimGray;
-            this.btnNext.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNext.IconSize = 20;
-            this.btnNext.Location = new System.Drawing.Point(950, 408);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(62, 32);
-            this.btnNext.TabIndex = 72;
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevious.IconChar = FontAwesome.Sharp.IconChar.ChevronLeft;
-            this.btnPrevious.IconColor = System.Drawing.Color.DimGray;
-            this.btnPrevious.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPrevious.IconSize = 20;
-            this.btnPrevious.Location = new System.Drawing.Point(888, 408);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(62, 32);
-            this.btnPrevious.TabIndex = 73;
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // EmployeeListForm
+            // UserListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1044, 610);
-            this.Controls.Add(this.btnPrevious);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lblResultados);
-            this.Controls.Add(this.dgvEmployees);
-            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.dgvUsers);
+            this.Controls.Add(this.btnInhabilitar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnNuevo);
-            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "EmployeeListForm";
-            this.Text = "EmployeeListForm";
+            this.Name = "UserListForm";
+            this.Text = "UserListForm";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        public FontAwesome.Sharp.IconButton btnPrevious;
-
-        public FontAwesome.Sharp.IconButton btnNext;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblResultados;
+        public System.Windows.Forms.DataGridView dgvUsers;
+        private FontAwesome.Sharp.IconButton btnInhabilitar;
+        private FontAwesome.Sharp.IconButton btnModificar;
+        private FontAwesome.Sharp.IconButton btnNuevo;
 
         private System.Windows.Forms.Panel panel2;
         private PresentationLayer.Components.CustomTextBox tboxBusqueda;
         private FontAwesome.Sharp.IconButton btnLimpiarBusqueda;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblResultados;
-        public System.Windows.Forms.DataGridView dgvEmployees;
-        private FontAwesome.Sharp.IconButton btnEliminar;
-        private FontAwesome.Sharp.IconButton btnModificar;
-        private FontAwesome.Sharp.IconButton btnNuevo;
 
         #endregion
     }

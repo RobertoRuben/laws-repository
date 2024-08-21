@@ -314,6 +314,7 @@ namespace PresentationLayer.Forms.Common
             this.btnPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPerfil.FlatAppearance.BorderSize = 0;
             this.btnPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPerfil.ForeColor = System.Drawing.Color.Transparent;
             this.btnPerfil.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
             this.btnPerfil.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
             this.btnPerfil.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -323,6 +324,7 @@ namespace PresentationLayer.Forms.Common
             this.btnPerfil.Size = new System.Drawing.Size(57, 48);
             this.btnPerfil.TabIndex = 14;
             this.btnPerfil.UseVisualStyleBackColor = true;
+            this.btnPerfil.Click += new System.EventHandler(this.btnPerfil_Click);
             // 
             // lblMainForm
             // 

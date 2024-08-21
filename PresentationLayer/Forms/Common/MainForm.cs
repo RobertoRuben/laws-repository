@@ -3,11 +3,14 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using FontAwesome.Sharp;
 using System.Drawing;
+using BusinessLayer.Services;
 using DataLayer.Repositories;
 using EntitiesLayer.Entities;
 using Presentacion.Formularios.CategoriaNormas;
 using PresentationLayer.Forms.Employee;
 using PresentationLayer.Forms.Roles;
+using PresentationLayer.Forms.User;
+
 namespace PresentationLayer.Forms.Common
 {
     public partial class MainForm : Form
@@ -21,6 +24,8 @@ namespace PresentationLayer.Forms.Common
         public string nombreRol;
 
         public int idUsuario;
+        
+        private MainForm mainForm;
 
         public MainForm()
         {
@@ -146,11 +151,25 @@ namespace PresentationLayer.Forms.Common
             lblMainForm.Text = "Gestión de Usuarios";
             MostrarSubMenu(subMenuUsuarios);
             ActivateButton(sender, RGBColors.color);
+            IUsuarioRepository userRepository = new UsuarioRepository();
+            UserListForm userListForm = new UserListForm(this, userRepository);
+            userListForm.idUsuarioSesion = idUsuario;
+            AbrirFormularioHijo(userListForm);
+        }
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            IUsuarioRepository userRepository = new UsuarioRepository();
+            UserUpdateCredentials userUpdateCredentials = new UserUpdateCredentials(userRepository);
+            userUpdateCredentials.tboxUsuario.Texts = nombreUsuario;
+            userUpdateCredentials.idUsuario = idUsuario;
+            this.SetTransparency(true);
+            userUpdateCredentials.ShowDialog(); 
+            this.SetTransparency(false); 
         }
         private void btnTrabajadores_Click(object sender, EventArgs e)
         {
             lblMainForm.Text = "Gestión de Trabajadores";
-            IRepository<Trabajador> employeeRepository = new EmployeeRepository();
+            IEmployeeRepository employeeRepository = new EmployeeRepository();
             EmployeeListForm employeeListForm = new EmployeeListForm(this, employeeRepository);
             employeeListForm.idUsuario = idUsuario;
             AbrirFormularioHijo(employeeListForm);

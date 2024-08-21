@@ -37,13 +37,13 @@ namespace PresentationLayer.Forms.Employee
             this.rbtnFemenino = new Presentacion.CustomControls.CustomRadioButton();
             this.rbtnMasculino = new Presentacion.CustomControls.CustomRadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.customTextBox3 = new PresentationLayer.Components.CustomTextBox();
+            this.tboxDni = new PresentationLayer.Components.CustomTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.customTextBox2 = new PresentationLayer.Components.CustomTextBox();
+            this.tboxApellidoMaterno = new PresentationLayer.Components.CustomTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.customTextBox1 = new PresentationLayer.Components.CustomTextBox();
+            this.tboxApellidoPaterno = new PresentationLayer.Components.CustomTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tboxNombreRol = new PresentationLayer.Components.CustomTextBox();
+            this.tboxNombre = new PresentationLayer.Components.CustomTextBox();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnSalir = new FontAwesome.Sharp.IconButton();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -74,13 +74,13 @@ namespace PresentationLayer.Forms.Employee
             this.panel3.Controls.Add(this.rbtnFemenino);
             this.panel3.Controls.Add(this.rbtnMasculino);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.customTextBox3);
+            this.panel3.Controls.Add(this.tboxDni);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.customTextBox2);
+            this.panel3.Controls.Add(this.tboxApellidoMaterno);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.customTextBox1);
+            this.panel3.Controls.Add(this.tboxApellidoPaterno);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.tboxNombreRol);
+            this.panel3.Controls.Add(this.tboxNombre);
             this.panel3.Location = new System.Drawing.Point(12, 21);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1015, 416);
@@ -138,29 +138,29 @@ namespace PresentationLayer.Forms.Employee
             this.label4.TabIndex = 56;
             this.label4.Text = "Dni";
             // 
-            // customTextBox3
+            // tboxDni
             // 
-            this.customTextBox3.AllowNull = false;
-            this.customTextBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.customTextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.customTextBox3.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.customTextBox3.BorderRadius = 3;
-            this.customTextBox3.BorderSize = 1;
-            this.customTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customTextBox3.ForeColor = System.Drawing.Color.DimGray;
-            this.customTextBox3.Location = new System.Drawing.Point(15, 39);
-            this.customTextBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.customTextBox3.Multiline = false;
-            this.customTextBox3.Name = "customTextBox3";
-            this.customTextBox3.Padding = new System.Windows.Forms.Padding(7);
-            this.customTextBox3.PasswordChar = false;
-            this.customTextBox3.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.customTextBox3.PlaceholderText = "";
-            this.customTextBox3.ReadOnly = false;
-            this.customTextBox3.Size = new System.Drawing.Size(973, 31);
-            this.customTextBox3.TabIndex = 55;
-            this.customTextBox3.Texts = "";
-            this.customTextBox3.UnderlinedStyle = false;
+            this.tboxDni.AllowNull = false;
+            this.tboxDni.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxDni.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxDni.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxDni.BorderRadius = 3;
+            this.tboxDni.BorderSize = 1;
+            this.tboxDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxDni.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxDni.Location = new System.Drawing.Point(15, 39);
+            this.tboxDni.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxDni.Multiline = false;
+            this.tboxDni.Name = "tboxDni";
+            this.tboxDni.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxDni.PasswordChar = false;
+            this.tboxDni.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxDni.PlaceholderText = "";
+            this.tboxDni.ReadOnly = false;
+            this.tboxDni.Size = new System.Drawing.Size(973, 31);
+            this.tboxDni.TabIndex = 55;
+            this.tboxDni.Texts = "";
+            this.tboxDni.UnderlinedStyle = false;
             // 
             // label3
             // 
@@ -173,29 +173,29 @@ namespace PresentationLayer.Forms.Employee
             this.label3.TabIndex = 54;
             this.label3.Text = "Apellido Materno";
             // 
-            // customTextBox2
+            // tboxApellidoMaterno
             // 
-            this.customTextBox2.AllowNull = false;
-            this.customTextBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.customTextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.customTextBox2.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.customTextBox2.BorderRadius = 3;
-            this.customTextBox2.BorderSize = 1;
-            this.customTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customTextBox2.ForeColor = System.Drawing.Color.DimGray;
-            this.customTextBox2.Location = new System.Drawing.Point(15, 233);
-            this.customTextBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.customTextBox2.Multiline = false;
-            this.customTextBox2.Name = "customTextBox2";
-            this.customTextBox2.Padding = new System.Windows.Forms.Padding(7);
-            this.customTextBox2.PasswordChar = false;
-            this.customTextBox2.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.customTextBox2.PlaceholderText = "";
-            this.customTextBox2.ReadOnly = false;
-            this.customTextBox2.Size = new System.Drawing.Size(973, 31);
-            this.customTextBox2.TabIndex = 53;
-            this.customTextBox2.Texts = "";
-            this.customTextBox2.UnderlinedStyle = false;
+            this.tboxApellidoMaterno.AllowNull = false;
+            this.tboxApellidoMaterno.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxApellidoMaterno.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxApellidoMaterno.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxApellidoMaterno.BorderRadius = 3;
+            this.tboxApellidoMaterno.BorderSize = 1;
+            this.tboxApellidoMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxApellidoMaterno.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxApellidoMaterno.Location = new System.Drawing.Point(15, 233);
+            this.tboxApellidoMaterno.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxApellidoMaterno.Multiline = false;
+            this.tboxApellidoMaterno.Name = "tboxApellidoMaterno";
+            this.tboxApellidoMaterno.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxApellidoMaterno.PasswordChar = false;
+            this.tboxApellidoMaterno.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxApellidoMaterno.PlaceholderText = "";
+            this.tboxApellidoMaterno.ReadOnly = false;
+            this.tboxApellidoMaterno.Size = new System.Drawing.Size(973, 31);
+            this.tboxApellidoMaterno.TabIndex = 53;
+            this.tboxApellidoMaterno.Texts = "";
+            this.tboxApellidoMaterno.UnderlinedStyle = false;
             // 
             // label2
             // 
@@ -208,29 +208,29 @@ namespace PresentationLayer.Forms.Employee
             this.label2.TabIndex = 52;
             this.label2.Text = "Apellido Paterno";
             // 
-            // customTextBox1
+            // tboxApellidoPaterno
             // 
-            this.customTextBox1.AllowNull = false;
-            this.customTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.customTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.customTextBox1.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.customTextBox1.BorderRadius = 3;
-            this.customTextBox1.BorderSize = 1;
-            this.customTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customTextBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.customTextBox1.Location = new System.Drawing.Point(15, 165);
-            this.customTextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.customTextBox1.Multiline = false;
-            this.customTextBox1.Name = "customTextBox1";
-            this.customTextBox1.Padding = new System.Windows.Forms.Padding(7);
-            this.customTextBox1.PasswordChar = false;
-            this.customTextBox1.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.customTextBox1.PlaceholderText = "";
-            this.customTextBox1.ReadOnly = false;
-            this.customTextBox1.Size = new System.Drawing.Size(973, 31);
-            this.customTextBox1.TabIndex = 51;
-            this.customTextBox1.Texts = "";
-            this.customTextBox1.UnderlinedStyle = false;
+            this.tboxApellidoPaterno.AllowNull = false;
+            this.tboxApellidoPaterno.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxApellidoPaterno.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxApellidoPaterno.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxApellidoPaterno.BorderRadius = 3;
+            this.tboxApellidoPaterno.BorderSize = 1;
+            this.tboxApellidoPaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxApellidoPaterno.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxApellidoPaterno.Location = new System.Drawing.Point(15, 165);
+            this.tboxApellidoPaterno.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxApellidoPaterno.Multiline = false;
+            this.tboxApellidoPaterno.Name = "tboxApellidoPaterno";
+            this.tboxApellidoPaterno.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxApellidoPaterno.PasswordChar = false;
+            this.tboxApellidoPaterno.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxApellidoPaterno.PlaceholderText = "";
+            this.tboxApellidoPaterno.ReadOnly = false;
+            this.tboxApellidoPaterno.Size = new System.Drawing.Size(973, 31);
+            this.tboxApellidoPaterno.TabIndex = 51;
+            this.tboxApellidoPaterno.Texts = "";
+            this.tboxApellidoPaterno.UnderlinedStyle = false;
             // 
             // label1
             // 
@@ -243,29 +243,29 @@ namespace PresentationLayer.Forms.Employee
             this.label1.TabIndex = 50;
             this.label1.Text = "Nombres";
             // 
-            // tboxNombreRol
+            // tboxNombre
             // 
-            this.tboxNombreRol.AllowNull = false;
-            this.tboxNombreRol.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxNombreRol.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxNombreRol.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxNombreRol.BorderRadius = 3;
-            this.tboxNombreRol.BorderSize = 1;
-            this.tboxNombreRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNombreRol.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxNombreRol.Location = new System.Drawing.Point(15, 97);
-            this.tboxNombreRol.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxNombreRol.Multiline = false;
-            this.tboxNombreRol.Name = "tboxNombreRol";
-            this.tboxNombreRol.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxNombreRol.PasswordChar = false;
-            this.tboxNombreRol.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxNombreRol.PlaceholderText = "";
-            this.tboxNombreRol.ReadOnly = false;
-            this.tboxNombreRol.Size = new System.Drawing.Size(973, 31);
-            this.tboxNombreRol.TabIndex = 49;
-            this.tboxNombreRol.Texts = "";
-            this.tboxNombreRol.UnderlinedStyle = false;
+            this.tboxNombre.AllowNull = false;
+            this.tboxNombre.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxNombre.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxNombre.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxNombre.BorderRadius = 3;
+            this.tboxNombre.BorderSize = 1;
+            this.tboxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxNombre.Location = new System.Drawing.Point(15, 97);
+            this.tboxNombre.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxNombre.Multiline = false;
+            this.tboxNombre.Name = "tboxNombre";
+            this.tboxNombre.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxNombre.PasswordChar = false;
+            this.tboxNombre.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxNombre.PlaceholderText = "";
+            this.tboxNombre.ReadOnly = false;
+            this.tboxNombre.Size = new System.Drawing.Size(973, 31);
+            this.tboxNombre.TabIndex = 49;
+            this.tboxNombre.Texts = "";
+            this.tboxNombre.UnderlinedStyle = false;
             // 
             // btnSave
             // 
@@ -286,6 +286,7 @@ namespace PresentationLayer.Forms.Employee
             this.btnSave.TabIndex = 59;
             this.btnSave.Text = "    Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnSalir
             // 
@@ -367,21 +368,21 @@ namespace PresentationLayer.Forms.Employee
 
         private System.Windows.Forms.Label label5;
 
-        private Presentacion.CustomControls.CustomRadioButton rbtnMasculino;
-        private Presentacion.CustomControls.CustomRadioButton rbtnFemenino;
+        public Presentacion.CustomControls.CustomRadioButton rbtnMasculino;
+        public Presentacion.CustomControls.CustomRadioButton rbtnFemenino;
 
         private System.Windows.Forms.Label label4;
-        public PresentationLayer.Components.CustomTextBox customTextBox3;
+        public PresentationLayer.Components.CustomTextBox tboxDni;
 
         private System.Windows.Forms.Label label2;
-        public PresentationLayer.Components.CustomTextBox customTextBox1;
+        public PresentationLayer.Components.CustomTextBox tboxApellidoPaterno;
         private System.Windows.Forms.Label label3;
-        public PresentationLayer.Components.CustomTextBox customTextBox2;
+        public PresentationLayer.Components.CustomTextBox tboxApellidoMaterno;
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
-        public PresentationLayer.Components.CustomTextBox tboxNombreRol;
+        public PresentationLayer.Components.CustomTextBox tboxNombre;
         private FontAwesome.Sharp.IconButton btnSave;
         private FontAwesome.Sharp.IconButton btnSalir;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;

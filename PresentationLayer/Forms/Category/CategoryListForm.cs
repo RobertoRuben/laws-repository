@@ -71,6 +71,7 @@ namespace Presentacion.Formularios.CategoriaNormas
         {
             CategoryService categoryService = new CategoryService(new CategoriaRepository());
             CategoryDataForm categoryDataForm = new CategoryDataForm(categoryService);
+            
             categoryDataForm.operacion = "Insertar";
             categoryDataForm.idUsuario = idUsuario;
             categoryDataForm.idCategoria = Convert.ToInt32(dgvCategoriaNormas.CurrentRow.Cells[0].Value);
@@ -90,8 +91,9 @@ namespace Presentacion.Formularios.CategoriaNormas
             categoryDataForm.tboxNombreRol.Texts = dgvCategoriaNormas.CurrentRow.Cells[1].Value.ToString().Trim();
             this.mainForm.SetTransparency(true); 
             categoryDataForm.ShowDialog();
-            this.mainForm.SetTransparency(false); 
             CargarDataGrid();
+            this.mainForm.SetTransparency(false); 
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -125,6 +127,11 @@ namespace Presentacion.Formularios.CategoriaNormas
             {
                 ErrorMessage("Seleccione un rol para eliminar.");
             }
+        }
+
+        private void btnLimpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            tboxBusqueda.Clear();
         }
     }
 }
