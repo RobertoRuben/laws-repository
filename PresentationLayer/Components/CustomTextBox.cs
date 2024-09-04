@@ -21,6 +21,7 @@ namespace PresentationLayer.Components
         private bool isPlaceholder = false;
         private bool isPasswordChar = false;
         private bool allowNull = false; // Campo para almacenar si se permiten valores nulos
+        private bool autoFocus = false; // Nueva propiedad para enfoque automático
 
         public event EventHandler _TextChanged;
         #endregion
@@ -30,6 +31,9 @@ namespace PresentationLayer.Components
             InitializeComponent();
             textBox1.ScrollBars = ScrollBars.Vertical;
             textBox1.Enter += textBox1_Enter; // Añadir el evento Enter
+
+            // Suscribirse al evento Load para verificar si se debe establecer el foco automáticamente
+            this.Load += new EventHandler(CustomTextBox_Load);
         }
 
         #region -> Properties
@@ -207,6 +211,13 @@ namespace PresentationLayer.Components
             set { allowNull = value; }
         }
 
+        [Category("Custom Component")]
+        public bool AutoFocus
+        {
+            get { return autoFocus; }
+            set { autoFocus = value; }
+        }
+
         #endregion
 
         #region -> Overridden methods
@@ -350,19 +361,27 @@ namespace PresentationLayer.Components
             textBox1.Text = "";
             SetPlaceholder();
         }
-        #endregion
-
-        #region -> TextBox events
-        public void SetTextWithoutHighlight(string text)
-        {
-            textBox1.Text = text;
-            textBox1.SelectionStart = textBox1.Text.Length;
-            textBox1.SelectionLength = 0;
-        }
 
         public void SetFocus()
         {
             textBox1.Focus();
+            textBox1.SelectionStart = textBox1.Text.Length;
+            textBox1.SelectionLength = 0;
+        }
+        #endregion
+
+        #region -> TextBox events
+        private void CustomTextBox_Load(object sender, EventArgs e)
+        {
+            if (autoFocus)
+            {
+                this.SetFocus(); // Llamar al método SetFocus si AutoFocus está habilitado
+            }
+        }
+
+        public void SetTextWithoutHighlight(string text)
+        {
+            textBox1.Text = text;
             textBox1.SelectionStart = textBox1.Text.Length;
             textBox1.SelectionLength = 0;
         }
@@ -413,4 +432,3 @@ namespace PresentationLayer.Components
         #endregion
     }
 }
-

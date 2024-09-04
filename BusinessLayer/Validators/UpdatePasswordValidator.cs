@@ -6,11 +6,11 @@ namespace BusinessLayer.Validators
 {
     public static class UpdatePasswordValidator
     {
-        public static void Validate(Usuario usuario)
+        public static void Validate(User user)
         {
-            if (!string.IsNullOrEmpty(usuario.Contraseña))
+            if (!string.IsNullOrEmpty(user.Password))
             {
-                if (usuario.Contraseña.Length < 8)
+                if (user.Password.Length < 8)
                 {
                     throw new ValidationException("La contraseña debe tener una longitud no menor a 8 caracteres.");
                 }

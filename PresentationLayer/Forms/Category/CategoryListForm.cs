@@ -14,7 +14,7 @@ namespace Presentacion.Formularios.CategoriaNormas
         private CategoryService _categoryService;
         public int idUsuario;
 
-        public CategoryListForm(MainForm main, IRepository<CategoriaDeNorma> categoryRepository)
+        public CategoryListForm(MainForm main, IRepository<CategoryLaw> categoryRepository)
         {
             InitializeComponent();
             _categoryService = new CategoryService(categoryRepository);
@@ -69,10 +69,11 @@ namespace Presentacion.Formularios.CategoriaNormas
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            CategoryService categoryService = new CategoryService(new CategoriaRepository());
+            CategoryService categoryService = new CategoryService(new CategoryRepository());
             CategoryDataForm categoryDataForm = new CategoryDataForm(categoryService);
             
             categoryDataForm.operacion = "Insertar";
+            categoryDataForm.lblSection.Text = "Registrar nueva categoría";
             categoryDataForm.idUsuario = idUsuario;
             categoryDataForm.idCategoria = Convert.ToInt32(dgvCategoriaNormas.CurrentRow.Cells[0].Value);
             this.mainForm.SetTransparency(true); 
@@ -83,12 +84,13 @@ namespace Presentacion.Formularios.CategoriaNormas
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            CategoryService categoryService = new CategoryService(new CategoriaRepository());
+            CategoryService categoryService = new CategoryService(new CategoryRepository());
             CategoryDataForm categoryDataForm = new CategoryDataForm(categoryService);
             
             categoryDataForm.operacion = "Actualizar";
+            categoryDataForm.lblSection.Text = "Actualizar datos de categoría";
             categoryDataForm.idUsuario = idUsuario;
-            categoryDataForm.tboxNombreRol.Texts = dgvCategoriaNormas.CurrentRow.Cells[1].Value.ToString().Trim();
+            categoryDataForm.tboxCategoryName.Texts = dgvCategoriaNormas.CurrentRow.Cells[1].Value.ToString().Trim();
             this.mainForm.SetTransparency(true); 
             categoryDataForm.ShowDialog();
             CargarDataGrid();
@@ -110,7 +112,7 @@ namespace Presentacion.Formularios.CategoriaNormas
                         if (isDeleted)
                         {
                             OkMessage("Categoria eliminada exitosamente.");
-                            CargarDataGrid(); // Recarga la lista para reflejar la eliminación
+                            CargarDataGrid(); 
                         }
                         else
                         {
@@ -125,7 +127,7 @@ namespace Presentacion.Formularios.CategoriaNormas
             }
             else
             {
-                ErrorMessage("Seleccione un rol para eliminar.");
+                ErrorMessage("Seleccione un categoria para eliminar.");
             }
         }
 

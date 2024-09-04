@@ -8,9 +8,9 @@ namespace DataLayer.Config
         private string dataBase;
         private string servidor;
         private string usuario;
-        private string contraseña;
-        private bool seguridad;
-        private string puerto; 
+        private string password;
+        private bool security;
+        private string port; 
 
         private static Conexion Con = null;
 
@@ -19,24 +19,24 @@ namespace DataLayer.Config
             this.dataBase = "BDNORMATIVIDAD";
             this.servidor = "localhost";
             this.usuario = "sa";
-            this.contraseña = "oracle#6403";
-            this.seguridad = false;
-            this.puerto = "1444"; 
+            this.password = "oracle#6403";
+            this.security = false;
+            this.port = "1444"; 
         }
 
-        public SqlConnection CrearConexion()
+        public SqlConnection CreateConnection()
         {
             SqlConnection cadena = new SqlConnection();
             try
             {
-                cadena.ConnectionString = "Server=" + this.servidor + "," + this.puerto + "; Database=" + this.dataBase + ";";
-                if (this.seguridad)
+                cadena.ConnectionString = "Server=" + this.servidor + "," + this.port + "; Database=" + this.dataBase + ";";
+                if (this.security)
                 {
                     cadena.ConnectionString += "Integrated Security = SSPI";
                 }
                 else
                 {
-                    cadena.ConnectionString += "User Id=" + this.usuario + ";Password=" + this.contraseña;
+                    cadena.ConnectionString += "User Id=" + this.usuario + ";Password=" + this.password;
                 }
             }
             catch (Exception ex)

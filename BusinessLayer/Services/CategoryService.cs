@@ -11,18 +11,18 @@ namespace BusinessLayer.Services
 {
     public class CategoryService
     {
-        private readonly IRepository<CategoriaDeNorma> _categoryRepository;
+        private readonly IRepository<CategoryLaw> _categoryRepository;
 
-        public CategoryService(IRepository<CategoriaDeNorma> categoryRepository)
+        public CategoryService(IRepository<CategoryLaw> categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
 
-        public int Insert(CategoriaDeNorma categoriaDeNorma, int codUsuario)
+        public int Insert(CategoryLaw categoryLaw, int codUsuario)
         {
             try
             {
-                CategoryValidator.Validate(categoriaDeNorma);
+                CategoryValidator.Validate(categoryLaw);
             }
             catch (ArgumentException ex)
             {
@@ -30,31 +30,31 @@ namespace BusinessLayer.Services
 
             }
 
-            if (_categoryRepository.Exists(categoriaDeNorma.TipoDeNorma))
+            if (_categoryRepository.Exists(categoryLaw.CategoryName))
             {
                 throw new BusinessException("El nombre de la categoria ya existe");
             }
-            int idCategoria = _categoryRepository.Insert(categoriaDeNorma, codUsuario);
+            int idCategoria = _categoryRepository.Insert(categoryLaw, codUsuario);
 
             return idCategoria;
         }
 
-        public bool Update(CategoriaDeNorma categoriaDeNorma, int codUsuario)
+        public bool Update(CategoryLaw categoryLaw, int codUsuario)
         {
             try
             {
-                CategoryValidator.Validate(categoriaDeNorma);
+                CategoryValidator.Validate(categoryLaw);
             }
             catch (ArgumentException ex)
             {
                 throw new ValidationException(ex.Message);
 
             }
-            if (_categoryRepository.Exists(categoriaDeNorma.TipoDeNorma))
+            if (_categoryRepository.Exists(categoryLaw.CategoryName))
             {
                 throw new BusinessException("No se puede actualizar a un nombre de categoria ya existente");
             }
-            return _categoryRepository.Update(categoriaDeNorma, codUsuario);
+            return _categoryRepository.Update(categoryLaw, codUsuario);
         }
 
         public bool Delete(int id, int codUsuario)
@@ -62,12 +62,12 @@ namespace BusinessLayer.Services
             return _categoryRepository.Delete(id, codUsuario);
         }
 
-        public List<CategoriaDeNorma> GetAll()
+        public List<CategoryLaw> GetAll()
         {
             return _categoryRepository.GetAll();
         }
 
-        public IEnumerable<CategoriaDeNorma> FindBy(string pattern)
+        public IEnumerable<CategoryLaw> FindBy(string pattern)
         {
             var category = _categoryRepository.FindBy(pattern);
             if (category == null || !category.Any())

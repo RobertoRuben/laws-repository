@@ -11,14 +11,14 @@ namespace DataLayer.Repositories
     {
         public int Insert(Rol entity, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("Sp_Roles_Insertar", conn)
+                SqlCommand cmd = new SqlCommand("Sp_Rol_Registrar", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
                 
-                cmd.Parameters.AddWithValue("@NombreRol", entity.NombreDeRol);
+                cmd.Parameters.AddWithValue("@NombreRol", entity.RolName);
                 cmd.Parameters.AddWithValue("@CodUsuario", codUsuario);
                 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
@@ -44,7 +44,7 @@ namespace DataLayer.Repositories
 
         public bool Update(Rol entity, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Rol_Modificar", conn)
                 {
@@ -52,7 +52,7 @@ namespace DataLayer.Repositories
                 };
                 
                 cmd.Parameters.AddWithValue("@CodRol", entity.CodRol);
-                cmd.Parameters.AddWithValue("@NombreRol", entity.NombreDeRol);
+                cmd.Parameters.AddWithValue("@NombreRol", entity.RolName);
                 cmd.Parameters.AddWithValue("@CodUsuario", codUsuario);
 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
@@ -78,9 +78,9 @@ namespace DataLayer.Repositories
         
         public bool Delete(int id, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("Sp_Roles_Eliminar", conn)
+                SqlCommand cmd = new SqlCommand("Sp_Rol_Eliminar", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -113,7 +113,7 @@ namespace DataLayer.Repositories
         {
             var roles = new List<Rol>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Rol_Listar", conn)
                 {
@@ -130,7 +130,7 @@ namespace DataLayer.Repositories
                             var rol = new Rol
                             {
                                 CodRol = reader.GetInt32(reader.GetOrdinal("CodRol")),
-                                NombreDeRol = reader.GetString(reader.GetOrdinal("NombreRol"))
+                                RolName = reader.GetString(reader.GetOrdinal("NombreRol"))
                             };
 
                             roles.Add(rol);
@@ -153,7 +153,7 @@ namespace DataLayer.Repositories
         {
             var roles = new List<Rol>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Rol_Buscar", conn)
                 {
@@ -172,7 +172,7 @@ namespace DataLayer.Repositories
                             var rol = new Rol
                             {
                                 CodRol = reader.GetInt32(reader.GetOrdinal("CodRol")),
-                                NombreDeRol = reader.GetString(reader.GetOrdinal("Nombre del Rol"))
+                                RolName = reader.GetString(reader.GetOrdinal("Nombre del Rol"))
                             };
 
                             roles.Add(rol);
@@ -194,7 +194,7 @@ namespace DataLayer.Repositories
 
         public bool Exists(IComparable searchValue)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Rol_Existe", conn)
                 {

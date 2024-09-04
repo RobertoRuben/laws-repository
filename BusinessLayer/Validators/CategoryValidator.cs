@@ -6,9 +6,9 @@ namespace BusinessLayer.Validators
 {
     public static class CategoryValidator
     {
-        public static void Validate(CategoriaDeNorma categoriaDeNorma)
+        public static void Validate(CategoryLaw categoryLaw)
         {
-            if (String.IsNullOrWhiteSpace(categoriaDeNorma.TipoDeNorma))
+            if (String.IsNullOrWhiteSpace(categoryLaw.CategoryName))
             {
                 throw new ValidationException("El nombre de la categoria de norma no puede ser nulo");
             }

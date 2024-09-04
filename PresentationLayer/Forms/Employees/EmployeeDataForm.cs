@@ -3,45 +3,46 @@ using System.Windows.Forms;
 using BusinessLayer.Exceptions;
 using BusinessLayer.Services;
 using BusinessLayer.Utilities;
-using EntitiesLayer.Entities;
 
-namespace PresentationLayer.Forms.Employee
+namespace PresentationLayer.Forms.Employees
 {
     public partial class EmployeeDataForm : Form
     {
-        public string operacion = "";
-        public int idUsuario;
-        public int idEmpleado;
+        public string operation = "";
+        public int userId;
+        public int employeeId;
 
         private readonly EmployeeService _employeeService;
         public EmployeeDataForm(EmployeeService employeeService)
         {
             InitializeComponent();
             _employeeService = employeeService;
+            
+            this.Shown += new EventHandler(EmployeeDataForm_Shown);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                var trabajador = new Trabajador()
+                var employee = new EntitiesLayer.Entities.Employee
                 {
-                    CodTrabajador = operacion == "Actualizar" ? idEmpleado : 0,
+                    CodEmployee = operation == "Actualizar" ? employeeId : 0,
                     Dni = Convert.ToInt32(tboxDni.Texts.Trim()),
-                    Nombre = TextTransformer.TransformToTitleCase(tboxNombre.Texts.Trim()),
-                    ApellidoPaterno = TextTransformer.CapitalizeFirstLetter(tboxApellidoPaterno.Texts.Trim()),
-                    ApellidoMaterno = TextTransformer.CapitalizeFirstLetter(tboxApellidoMaterno.Texts.Trim()),
-                    Sexo = rbtnMasculino.Checked ? 'M' : rbtnFemenino.Checked ? 'F' : '\0'
+                    EmployeeName = TextTransformer.TransformToTitleCase(tboxName.Texts.Trim()),
+                    PaternalSurname = TextTransformer.CapitalizeFirstLetter(tboxFaternalLastName.Texts.Trim()),
+                    MaternalSurname = TextTransformer.CapitalizeFirstLetter(tboxMaternalLastName.Texts.Trim()),
+                    Gender = rbtnMale.Checked ? 'M' : rbtnFemale.Checked ? 'F' : '\0'
                 };
 
-                if (operacion.Equals("Insertar"))
+                if (operation.Equals("Insertar"))
                 {
-                    _employeeService.Insert(trabajador, idUsuario);
-                    OkMessage("Trabajador registrado");
+                    _employeeService.Insert(employee, userId);
+                    OkMessage("Employee registrado");
                     Close();
                 }
-                else if (operacion.Equals("Actualizar"))
+                else if (operation.Equals("Actualizar"))
                 {
-                    bool result = _employeeService.Update(trabajador, idUsuario);
+                    bool result = _employeeService.Update(employee, userId);
                     if (result)
                     {
                         OkMessage("Trabajador actualizado con éxito.");
@@ -57,8 +58,6 @@ namespace PresentationLayer.Forms.Employee
                     ErrorMessage("Operacion invalida");
                 }
 
-                ClearForm();
-
             }
             catch (ValidationException ex)
             {
@@ -73,7 +72,7 @@ namespace PresentationLayer.Forms.Employee
                 ErrorMessage($"Error inesperado: {ex.Message}");
             }
         }
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void ExitBtn_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -85,14 +84,9 @@ namespace PresentationLayer.Forms.Employee
         {
             MessageBox.Show(message, "Operación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        private void ClearForm()
+        private void EmployeeDataForm_Shown(object sender, EventArgs e)
         {
-            tboxDni.Clear();
-            tboxNombre.Clear();
-            tboxApellidoPaterno.Clear();
-            tboxApellidoMaterno.Clear();
-            rbtnFemenino.Checked = false;
-            rbtnMasculino.Checked = false;
+            tboxDni.SetFocus();
         }
     }
 }

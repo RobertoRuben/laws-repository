@@ -9,58 +9,37 @@ namespace PresentationLayer.Forms.Roles
 {
     public partial class RoleDataForm : Form
     {
-        public string operacion = "";
-        public int idUsuario;
-        public int idRol;
+        public string operation = "";
+        public int userId;
+        public int rolId;
         private readonly RolService _rolService;
 
         public RoleDataForm(RolService rolService)
         {
             InitializeComponent();
             _rolService = rolService;
+            this.Shown += new EventHandler(RoleDataForm_Shown);
         }
-
-        private void ClearForm()
-        {
-            tboxNombreRol.Clear();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void ErrorMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void OkMessage(string message)
-        {
-            MessageBox.Show(message, "Operación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
+        
+        private void SaveBtn_Click(object sender, EventArgs e)
         {
             try
             {
                 var rol = new Rol
                 {
-                    CodRol = operacion == "Actualizar"
-                        ? idRol
-                        : 0, // Asume que tboxCodRol es un TextBox para el ID del rol
-                    NombreDeRol = TextTransformer.CapitalizeFirstLetter(tboxNombreRol.Texts.Trim())
+                    CodRol = operation == "Actualizar" ? rolId : 0, // Asume que tboxCodRol es un TextBox para el ID del rol
+                    RolName = TextTransformer.CapitalizeFirstLetter(tboxRole.Texts.Trim())
                 };
 
-                if (operacion == "Insertar")
+                if (operation == "Insertar")
                 {
-                    _rolService.Insert(rol, idUsuario);
+                    _rolService.Insert(rol, userId);
                     OkMessage("Rol registrado");
                     Close();
                 }
-                else if (operacion == "Actualizar")
+                else if (operation == "Actualizar")
                 {
-                    bool result = _rolService.Update(rol, idUsuario);
+                    bool result = _rolService.Update(rol, userId);
                     if (result)
                     {
                         OkMessage("Rol actualizado con éxito.");
@@ -75,8 +54,7 @@ namespace PresentationLayer.Forms.Roles
                 {
                     ErrorMessage("Operación no válida.");
                 }
-
-                ClearForm();
+                
             }
             catch (ValidationException ex)
             {
@@ -90,6 +68,25 @@ namespace PresentationLayer.Forms.Roles
             {
                 ErrorMessage($"Error inesperado: {ex.Message}");
             }
+        }
+        
+        private void ExitBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ErrorMessage(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void OkMessage(string message)
+        {
+            MessageBox.Show(message, "Operación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void RoleDataForm_Shown(object sender, EventArgs e)
+        {
+            tboxRole.SetFocus();
         }
     }
 }

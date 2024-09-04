@@ -10,9 +10,9 @@ namespace PresentationLayer.Forms.User
 {
     public partial class UserDataForm : Form
     {
-        public string operacion = "";
-        public int idUsuarioSesion;
-        public int idUsuario;
+        public string operation = "";
+        public int userSesionId;
+        public int UserId;
 
         private readonly UserService _userService;
         private readonly EmployeeService _employeeService;
@@ -25,23 +25,23 @@ namespace PresentationLayer.Forms.User
             _userService = userService;
             _employeeService = employeeService;
             _rolService = rolService;
-            LoadCboxTrabajadores();
-            LoadCboxRoles();
+            LoadEmployees();
+            LoadRoles();
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
+        private void ExitBtn_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void LoadCboxTrabajadores()
+        private void LoadEmployees()
         {
             try
             {
-                cboxTrabajador.DataSource = _employeeService.GetNames();
-                cboxTrabajador.DisplayMember = "FullName";
-                cboxTrabajador.ValueMember = "CodTrabajador";
-                cboxTrabajador.Texts = "Seleccione un trabajador";
+                cboxEmployee.DataSource = _employeeService.GetNames();
+                cboxEmployee.DisplayMember = "FullName";
+                cboxEmployee.ValueMember = "CodEmployee";
+                cboxEmployee.Texts = "Seleccione un trabajador";
 
             }
             catch (Exception ex)
@@ -50,12 +50,12 @@ namespace PresentationLayer.Forms.User
             }
         }
 
-        private void LoadCboxRoles()
+        private void LoadRoles()
         {
             try
             {
                 cboxRol.DataSource = _rolService.GetAll();
-                cboxRol.DisplayMember = "NombreDeRol";
+                cboxRol.DisplayMember = "RolName";
                 cboxRol.ValueMember = "CodRol";
                 cboxRol.Texts = "Seleccione un rol";
 
@@ -66,41 +66,27 @@ namespace PresentationLayer.Forms.User
             }
             
         }
-        
-        private static void SetDoubleBuffered(Control control)
-        {
-            // Usando reflexión para obtener acceso a la propiedad DoubleBuffered
-            PropertyInfo propInfo = typeof(Control).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
-            propInfo.SetValue(control, true, null);
-
-            // Aplicar a todos los controles anidados
-            foreach (Control ctrl in control.Controls)
-            {
-                SetDoubleBuffered(ctrl);
-            }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
+        private void SaveBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                var user = new Usuario()
+                var user = new EntitiesLayer.Entities.User()
                 {
-                    CodUsuario = operacion == "Actualizar" ? idUsuario : 0,
+                    CodUser = operation == "Actualizar" ? UserId : 0,
                     CodRol = Convert.ToInt32(cboxRol.SelectedValue),
-                    CodTrabajador = Convert.ToInt32(cboxTrabajador.SelectedValue),
-                    Contraseña = tboxContraseña.Texts.Trim(),
-                    Estado = rbtnActivo.Checked ? "Activo" : "Inactivo",
-                    NombreUsuario = tboxUsuario.Texts.Trim()
+                    CodEmployee = Convert.ToInt32(cboxEmployee.SelectedValue),
+                    Password = tboxPassword.Texts.Trim(),
+                    State = rbtnActivate.Checked ? "Activo" : "Inactivo",
+                    UserName = tboxUser.Texts.Trim()
                 };
 
-                if (operacion.Equals("Insertar"))
+                if (operation.Equals("Insertar"))
                 {
-                    string confirmacionContraseña = tboxConfirmarContraseña.Texts.Trim();
+                    string passwordConfirm = tboxConfirm.Texts.Trim();
                     
-                    if (user.Contraseña.Equals(confirmacionContraseña))
+                    if (user.Password.Equals(passwordConfirm))
                     {
-                        _userService.Insert(user, idUsuarioSesion);
+                        _userService.Insert(user, userSesionId);
                         OkMessage("Usuario registrado");
                         Close();
                     }
@@ -108,25 +94,18 @@ namespace PresentationLayer.Forms.User
                     {
                         ErrorMessage("La contraseña no coincide con la confirmacion");
                     }
-                }else if (operacion.Equals("Actualizar"))
+                }else if (operation.Equals("Actualizar"))
                 {
-                    Console.WriteLine("Contraseña: " + user.Contraseña);
-                    Console.WriteLine("Longitud de la contraseña: " + user.Contraseña.Length);
-
-                    bool result = _userService.Update(user, idUsuarioSesion);
+                    bool result = _userService.Update(user, userSesionId);
                     if (result)
                     {
-                        OkMessage("Trabajador actualizado con éxito.");
+                        OkMessage("Usuario actualizado con éxito.");
                         Close();
                     }
                     else
                     {
-                        ErrorMessage("No se pudo actualizar los datos del trabajador.");
+                        ErrorMessage("No se pudo actualizar los datos del usuario.");
                     }
-                }
-                else
-                {
-                    ErrorMessage("No se pudo actualizar los datos del trabajador.");
                 }
 
             }
@@ -150,6 +129,19 @@ namespace PresentationLayer.Forms.User
         private void OkMessage(string message)
         {
             MessageBox.Show(message, "Operación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        private static void SetDoubleBuffered(Control control)
+        {
+            // Usando reflexión para obtener acceso a la propiedad DoubleBuffered
+            PropertyInfo propInfo = typeof(Control).GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
+            propInfo.SetValue(control, true, null);
+
+            // Aplicar a todos los controles anidados
+            foreach (Control ctrl in control.Controls)
+            {
+                SetDoubleBuffered(ctrl);
+            }
         }
 
     }

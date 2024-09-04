@@ -5,12 +5,12 @@ using EntitiesLayer.Entities;
 
 namespace DataLayer.Repositories
 {
-    public interface IUsuarioRepository
+    public interface IUserRepository
     {
         UserDTO Login(string nombre, string contraseña);
-        bool UpdateCredentials(int id, Usuario usuario);
-        int Insert(Usuario usuario, int codUsuario);
-        bool Update(Usuario usuario, int codUsuario);
+        bool UpdateCredentials(int id, User user);
+        int Insert(User user, int codUsuario);
+        bool Update(User user, int codUsuario);
         bool Disable(int id, int codUsuario);
         List<UserDTO> GetAll();
         IEnumerable<UserDTO> FindBy(string pattern);

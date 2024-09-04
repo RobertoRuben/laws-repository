@@ -35,11 +35,11 @@ namespace PresentationLayer.Forms.User
             this.lblSeccion = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.tboxConfirmarContraseña = new PresentationLayer.Components.CustomTextBox();
+            this.tboxConfirmPassword = new PresentationLayer.Components.CustomTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tboxContraseña = new PresentationLayer.Components.CustomTextBox();
+            this.tboxPassword = new PresentationLayer.Components.CustomTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tboxUsuario = new PresentationLayer.Components.CustomTextBox();
+            this.tboxUser = new PresentationLayer.Components.CustomTextBox();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnSalir = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -76,11 +76,11 @@ namespace PresentationLayer.Forms.User
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.tboxConfirmarContraseña);
+            this.panel3.Controls.Add(this.tboxConfirmPassword);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.tboxContraseña);
+            this.panel3.Controls.Add(this.tboxPassword);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.tboxUsuario);
+            this.panel3.Controls.Add(this.tboxUser);
             this.panel3.Location = new System.Drawing.Point(12, 74);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1015, 436);
@@ -97,29 +97,30 @@ namespace PresentationLayer.Forms.User
             this.label4.TabIndex = 56;
             this.label4.Text = "Confirmar contraseña";
             // 
-            // tboxConfirmarContraseña
+            // tboxConfirmPassword
             // 
-            this.tboxConfirmarContraseña.AllowNull = false;
-            this.tboxConfirmarContraseña.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxConfirmarContraseña.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxConfirmarContraseña.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxConfirmarContraseña.BorderRadius = 3;
-            this.tboxConfirmarContraseña.BorderSize = 1;
-            this.tboxConfirmarContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxConfirmarContraseña.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxConfirmarContraseña.Location = new System.Drawing.Point(15, 168);
-            this.tboxConfirmarContraseña.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxConfirmarContraseña.Multiline = false;
-            this.tboxConfirmarContraseña.Name = "tboxConfirmarContraseña";
-            this.tboxConfirmarContraseña.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxConfirmarContraseña.PasswordChar = false;
-            this.tboxConfirmarContraseña.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxConfirmarContraseña.PlaceholderText = "";
-            this.tboxConfirmarContraseña.ReadOnly = false;
-            this.tboxConfirmarContraseña.Size = new System.Drawing.Size(973, 31);
-            this.tboxConfirmarContraseña.TabIndex = 55;
-            this.tboxConfirmarContraseña.Texts = "";
-            this.tboxConfirmarContraseña.UnderlinedStyle = false;
+            this.tboxConfirmPassword.AllowNull = false;
+            this.tboxConfirmPassword.AutoFocus = false;
+            this.tboxConfirmPassword.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxConfirmPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxConfirmPassword.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxConfirmPassword.BorderRadius = 3;
+            this.tboxConfirmPassword.BorderSize = 1;
+            this.tboxConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxConfirmPassword.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxConfirmPassword.Location = new System.Drawing.Point(15, 168);
+            this.tboxConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxConfirmPassword.Multiline = false;
+            this.tboxConfirmPassword.Name = "tboxConfirmPassword";
+            this.tboxConfirmPassword.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxConfirmPassword.PasswordChar = true;
+            this.tboxConfirmPassword.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxConfirmPassword.PlaceholderText = "";
+            this.tboxConfirmPassword.ReadOnly = false;
+            this.tboxConfirmPassword.Size = new System.Drawing.Size(973, 31);
+            this.tboxConfirmPassword.TabIndex = 55;
+            this.tboxConfirmPassword.Texts = "";
+            this.tboxConfirmPassword.UnderlinedStyle = false;
             // 
             // label3
             // 
@@ -132,29 +133,30 @@ namespace PresentationLayer.Forms.User
             this.label3.TabIndex = 54;
             this.label3.Text = "Contraseña";
             // 
-            // tboxContraseña
+            // tboxPassword
             // 
-            this.tboxContraseña.AllowNull = false;
-            this.tboxContraseña.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxContraseña.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxContraseña.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxContraseña.BorderRadius = 3;
-            this.tboxContraseña.BorderSize = 1;
-            this.tboxContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxContraseña.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxContraseña.Location = new System.Drawing.Point(15, 101);
-            this.tboxContraseña.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxContraseña.Multiline = false;
-            this.tboxContraseña.Name = "tboxContraseña";
-            this.tboxContraseña.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxContraseña.PasswordChar = false;
-            this.tboxContraseña.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxContraseña.PlaceholderText = "";
-            this.tboxContraseña.ReadOnly = false;
-            this.tboxContraseña.Size = new System.Drawing.Size(973, 31);
-            this.tboxContraseña.TabIndex = 53;
-            this.tboxContraseña.Texts = "";
-            this.tboxContraseña.UnderlinedStyle = false;
+            this.tboxPassword.AllowNull = false;
+            this.tboxPassword.AutoFocus = false;
+            this.tboxPassword.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxPassword.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxPassword.BorderRadius = 3;
+            this.tboxPassword.BorderSize = 1;
+            this.tboxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxPassword.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxPassword.Location = new System.Drawing.Point(15, 101);
+            this.tboxPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxPassword.Multiline = false;
+            this.tboxPassword.Name = "tboxPassword";
+            this.tboxPassword.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxPassword.PasswordChar = true;
+            this.tboxPassword.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxPassword.PlaceholderText = "";
+            this.tboxPassword.ReadOnly = false;
+            this.tboxPassword.Size = new System.Drawing.Size(973, 31);
+            this.tboxPassword.TabIndex = 53;
+            this.tboxPassword.Texts = "";
+            this.tboxPassword.UnderlinedStyle = false;
             // 
             // label1
             // 
@@ -167,29 +169,30 @@ namespace PresentationLayer.Forms.User
             this.label1.TabIndex = 50;
             this.label1.Text = "Nombre del usuario";
             // 
-            // tboxUsuario
+            // tboxUser
             // 
-            this.tboxUsuario.AllowNull = false;
-            this.tboxUsuario.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxUsuario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxUsuario.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxUsuario.BorderRadius = 3;
-            this.tboxUsuario.BorderSize = 1;
-            this.tboxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxUsuario.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxUsuario.Location = new System.Drawing.Point(15, 38);
-            this.tboxUsuario.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxUsuario.Multiline = false;
-            this.tboxUsuario.Name = "tboxUsuario";
-            this.tboxUsuario.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxUsuario.PasswordChar = false;
-            this.tboxUsuario.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxUsuario.PlaceholderText = "";
-            this.tboxUsuario.ReadOnly = true;
-            this.tboxUsuario.Size = new System.Drawing.Size(973, 31);
-            this.tboxUsuario.TabIndex = 49;
-            this.tboxUsuario.Texts = "";
-            this.tboxUsuario.UnderlinedStyle = false;
+            this.tboxUser.AllowNull = false;
+            this.tboxUser.AutoFocus = false;
+            this.tboxUser.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxUser.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxUser.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxUser.BorderRadius = 3;
+            this.tboxUser.BorderSize = 1;
+            this.tboxUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxUser.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxUser.Location = new System.Drawing.Point(15, 38);
+            this.tboxUser.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxUser.Multiline = false;
+            this.tboxUser.Name = "tboxUser";
+            this.tboxUser.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxUser.PasswordChar = false;
+            this.tboxUser.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxUser.PlaceholderText = "";
+            this.tboxUser.ReadOnly = true;
+            this.tboxUser.Size = new System.Drawing.Size(973, 31);
+            this.tboxUser.TabIndex = 49;
+            this.tboxUser.Texts = "";
+            this.tboxUser.UnderlinedStyle = false;
             // 
             // btnSave
             // 
@@ -210,7 +213,7 @@ namespace PresentationLayer.Forms.User
             this.btnSave.TabIndex = 75;
             this.btnSave.Text = "    Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // btnSalir
             // 
@@ -232,7 +235,7 @@ namespace PresentationLayer.Forms.User
             this.btnSalir.TabIndex = 76;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // panel2
             // 
@@ -270,11 +273,11 @@ namespace PresentationLayer.Forms.User
         public System.Windows.Forms.Label lblSeccion;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
-        public PresentationLayer.Components.CustomTextBox tboxConfirmarContraseña;
+        public PresentationLayer.Components.CustomTextBox tboxConfirmPassword;
         private System.Windows.Forms.Label label3;
-        public PresentationLayer.Components.CustomTextBox tboxContraseña;
+        public PresentationLayer.Components.CustomTextBox tboxPassword;
         private System.Windows.Forms.Label label1;
-        public PresentationLayer.Components.CustomTextBox tboxUsuario;
+        public PresentationLayer.Components.CustomTextBox tboxUser;
         private FontAwesome.Sharp.IconButton btnSave;
         private FontAwesome.Sharp.IconButton btnSalir;
         private System.Windows.Forms.Panel panel2;

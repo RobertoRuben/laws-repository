@@ -3,13 +3,14 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using FontAwesome.Sharp;
 using System.Drawing;
-using BusinessLayer.Services;
 using DataLayer.Repositories;
 using EntitiesLayer.Entities;
 using Presentacion.Formularios.CategoriaNormas;
-using PresentationLayer.Forms.Employee;
+using PresentationLayer.Forms.Employees;
+using PresentationLayer.Forms.Laws;
 using PresentationLayer.Forms.Roles;
 using PresentationLayer.Forms.User;
+
 
 namespace PresentationLayer.Forms.Common
 {
@@ -19,18 +20,18 @@ namespace PresentationLayer.Forms.Common
         private Panel leftBorderBtn;
         private Form formularioHijoActual;
         
-        public string nombreTrabajador;
-        public string nombreUsuario;
-        public string nombreRol;
+        public string employeeName;
+        public string userName;
+        public string rolName;
 
-        public int idUsuario;
+        public int userId;
         
         private MainForm mainForm;
 
         public MainForm()
         {
             InitializeComponent();
-            PersonalizarDiseño();
+            CustomizeDesign();
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 45);
             pMenu.Controls.Add(leftBorderBtn);
@@ -39,41 +40,70 @@ namespace PresentationLayer.Forms.Common
             //Ocultar barra de titulo
             this.Text = string.Empty;
 
-            this.DoubleBuffered = true;
+            SetDoubleBuffered(this, true);  
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            lblMainForm.Text = "Bienvenido " + nombreTrabajador;
-            lblNombreUsuario.Text = nombreUsuario;
-            lblNombreRol.Text = nombreRol;
+            lblMainForm.Text = "Bienvenido " + employeeName;
+            userNameLbl.Text = userName;
+            rolLbl.Text = rolName;
+            ConfigureMenuByRole();
         }
-
-        private void PersonalizarDiseño()
+        private void ConfigureMenuByRole()
         {
-            subMenuUsuarios.Visible = false;
-           // subMenuVentas.Visible = false;
-            subMenuNormas.Visible = false;
-        }
-
-        private void OcultarSubMenu()
-        {
-            if (subMenuUsuarios.Visible == true)
+            if (rolName.Equals("Administrador", StringComparison.OrdinalIgnoreCase))
             {
-                subMenuUsuarios.Visible = false;
+                btnConsultas.Visible = true;
+                LawsBtn.Visible = true;
+                UsersBtn.Visible = true;
+            }
+            else if (rolName.Equals("Editor", StringComparison.OrdinalIgnoreCase))
+            {
+                btnConsultas.Visible = true;
+                LawsBtn.Visible = true;
+                UsersBtn.Visible = false;
+            }
+            else if (rolName.Equals("Usuario", StringComparison.OrdinalIgnoreCase))
+            {
+                btnConsultas.Visible = true;
+                LawsBtn.Visible = false;
+                UsersBtn.Visible = false;
+            }
+            else
+            {
+                // Oculta todos los botones en caso de un rol no identificado
+                btnConsultas.Visible = false;
+                LawsBtn.Visible = false;
+                UsersBtn.Visible = false;
+            }
+        }
+
+
+        private void CustomizeDesign()
+        {
+            usersSubMenu.Visible = false;
+            lawsSubMenu.Visible = false;
+        }
+
+        private void HideSubmenu()
+        {
+            if (usersSubMenu.Visible == true)
+            {
+                usersSubMenu.Visible = false;
             }
             
-            if (subMenuNormas.Visible == true)
+            if (lawsSubMenu.Visible == true)
             {
-                subMenuNormas.Visible = false;
+                lawsSubMenu.Visible = false;
             }
         }
 
-        private void MostrarSubMenu(Panel subMenu)
+        private void ShowSubMenu(Panel subMenu)
         {
             if (subMenu.Visible == false)
             {
-                OcultarSubMenu();
+                HideSubmenu();
                 subMenu.Visible = true;
             }
             else
@@ -127,75 +157,91 @@ namespace PresentationLayer.Forms.Common
         {
             lblMainForm.Text = "Consulta de Normas";
             ActivateButton(sender, RGBColors.color);
-            OcultarSubMenu();
+            HideSubmenu();
+            ILawRepository lawRepository = new LawRepository();
+            LawsListForm lawsListForm = new LawsListForm(this, lawRepository);
+            lawsListForm.idUsuario = userId;
+            lawsListForm.AddBtn.Visible = false;
+            lawsListForm.UpdateBtn.Visible = false;
+            lawsListForm.DeleteBtn.Visible = false;
+            //lawsListForm.AddArticleBtn.Visible = false;
+            lawsListForm.DetailsBtn.Visible = true;
+            lawsListForm.ReportBtn.Visible = true;
+            lawsListForm.module = "Consultas";
+
+            OpenChildForm(lawsListForm);
         }
 
-        private void btnNormas_Click(object sender, EventArgs e)
+        private void LawsBtn_Click(object sender, EventArgs e)
         {
             lblMainForm.Text = "Gestión de Normas";
-            MostrarSubMenu(subMenuNormas);
+            ShowSubMenu(lawsSubMenu);
             ActivateButton(sender, RGBColors.color);
+            ILawRepository lawRepository = new LawRepository();
+            LawsListForm lawsListForm = new LawsListForm(this, lawRepository);
+            lawsListForm.idUsuario = userId;
+            OpenChildForm(lawsListForm);
         }
 
-        private void btnCategorias_Click(object sender, EventArgs e)
+        private void CategoriesBtn_Click(object sender, EventArgs e)
         {
             lblMainForm.Text = "Gestión de Categorías";
-            IRepository<CategoriaDeNorma> categoryRepository = new CategoriaRepository();
+            IRepository<CategoryLaw> categoryRepository = new CategoryRepository();
             CategoryListForm categoryListForm = new CategoryListForm(main: this, categoryRepository);
-            categoryListForm.idUsuario = idUsuario;
-            AbrirFormularioHijo(categoryListForm);
+            categoryListForm.idUsuario = userId;
+            OpenChildForm(categoryListForm);
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e)
+        private void UsersBtn_Click(object sender, EventArgs e)
         {
             lblMainForm.Text = "Gestión de Usuarios";
-            MostrarSubMenu(subMenuUsuarios);
+            ShowSubMenu(usersSubMenu);
             ActivateButton(sender, RGBColors.color);
-            IUsuarioRepository userRepository = new UsuarioRepository();
+            IUserRepository userRepository = new UserRepository();
             UserListForm userListForm = new UserListForm(this, userRepository);
-            userListForm.idUsuarioSesion = idUsuario;
-            AbrirFormularioHijo(userListForm);
+            userListForm.userSesionId = userId;
+            OpenChildForm(userListForm);
         }
-        private void btnPerfil_Click(object sender, EventArgs e)
+        private void UsersProfileBtn_Click(object sender, EventArgs e)
         {
-            IUsuarioRepository userRepository = new UsuarioRepository();
+            IUserRepository userRepository = new UserRepository();
             UserUpdateCredentials userUpdateCredentials = new UserUpdateCredentials(userRepository);
-            userUpdateCredentials.tboxUsuario.Texts = nombreUsuario;
-            userUpdateCredentials.idUsuario = idUsuario;
+            userUpdateCredentials.tboxUser.Texts = userName;
+            userUpdateCredentials.userId = userId;
             this.SetTransparency(true);
             userUpdateCredentials.ShowDialog(); 
             this.SetTransparency(false); 
         }
-        private void btnTrabajadores_Click(object sender, EventArgs e)
+        private void EmployeesBtn_Click(object sender, EventArgs e)
         {
             lblMainForm.Text = "Gestión de Trabajadores";
             IEmployeeRepository employeeRepository = new EmployeeRepository();
             EmployeeListForm employeeListForm = new EmployeeListForm(this, employeeRepository);
-            employeeListForm.idUsuario = idUsuario;
-            AbrirFormularioHijo(employeeListForm);
+            employeeListForm.userId = userId;
+            OpenChildForm(employeeListForm);
         }
-        private void tbnRoles_Click(object sender, EventArgs e)
+        private void RolBtn_Click(object sender, EventArgs e)
         {
             lblMainForm.Text = "Gestión de Roles";
             IRepository<Rol> rolRepository = new RolRepository();
             RolListForm rolListForm = new RolListForm(this, rolRepository);
-            rolListForm.idUsuario = idUsuario;
-            AbrirFormularioHijo(rolListForm);
+            rolListForm.userId = userId;
+            OpenChildForm(rolListForm);
         }
-        private void AbrirFormularioHijo(Form formularioHijo)
+        private void OpenChildForm(Form childForm)
         {
             if (formularioHijoActual != null)
             {
                 formularioHijoActual.Close();
             }
-            formularioHijoActual = formularioHijo;
-            formularioHijo.TopLevel = false;
-            formularioHijo.FormBorderStyle = FormBorderStyle.None;
-            formularioHijo.Dock = DockStyle.Fill;
-            pContainer.Controls.Add(formularioHijo);
-            pContainer.Tag = formularioHijo;
-            formularioHijo.BringToFront();
-            formularioHijo.Show();
+            formularioHijoActual = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            pContainer.Controls.Add(childForm);
+            pContainer.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
         
         //Drag Form
@@ -230,6 +276,18 @@ namespace PresentationLayer.Forms.Common
         {
             this.Opacity = isTransparent ? 0.75 : 1.0;
         }
+        
+        private void SetDoubleBuffered(Control control, bool enable)
+        {
+            var doubleBufferPropertyInfo = control.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            doubleBufferPropertyInfo?.SetValue(control, enable, null);
+
+            foreach (Control childControl in control.Controls)
+            {
+                SetDoubleBuffered(childControl, enable);  // Aplicar recursivamente
+            }
+        }
+
         
     }
 }

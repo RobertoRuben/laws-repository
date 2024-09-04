@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace PresentationLayer.Forms.Employee
+namespace PresentationLayer.Forms.Employees
 {
     partial class EmployeeListForm
     {
@@ -34,7 +34,7 @@ namespace PresentationLayer.Forms.Employee
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tboxBusqueda = new PresentationLayer.Components.CustomTextBox();
+            this.searchTbox = new PresentationLayer.Components.CustomTextBox();
             this.btnLimpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@ namespace PresentationLayer.Forms.Employee
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
-            this.panel2.Controls.Add(this.tboxBusqueda);
+            this.panel2.Controls.Add(this.searchTbox);
             this.panel2.Controls.Add(this.btnLimpiarBusqueda);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Location = new System.Drawing.Point(13, 12);
@@ -61,30 +61,31 @@ namespace PresentationLayer.Forms.Employee
             this.panel2.Size = new System.Drawing.Size(1020, 46);
             this.panel2.TabIndex = 69;
             // 
-            // tboxBusqueda
+            // searchTbox
             // 
-            this.tboxBusqueda.AllowNull = false;
-            this.tboxBusqueda.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxBusqueda.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxBusqueda.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxBusqueda.BorderRadius = 1;
-            this.tboxBusqueda.BorderSize = 1;
-            this.tboxBusqueda.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.tboxBusqueda.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxBusqueda.Location = new System.Drawing.Point(79, 6);
-            this.tboxBusqueda.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxBusqueda.Multiline = false;
-            this.tboxBusqueda.Name = "tboxBusqueda";
-            this.tboxBusqueda.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxBusqueda.PasswordChar = false;
-            this.tboxBusqueda.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxBusqueda.PlaceholderText = "";
-            this.tboxBusqueda.ReadOnly = false;
-            this.tboxBusqueda.Size = new System.Drawing.Size(342, 35);
-            this.tboxBusqueda.TabIndex = 65;
-            this.tboxBusqueda.Texts = "";
-            this.tboxBusqueda.UnderlinedStyle = false;
-            this.tboxBusqueda._TextChanged += new System.EventHandler(this.tboxBusqueda_TextChanged);
+            this.searchTbox.AllowNull = false;
+            this.searchTbox.AutoFocus = false;
+            this.searchTbox.BackColor = System.Drawing.SystemColors.Window;
+            this.searchTbox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.searchTbox.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.searchTbox.BorderRadius = 1;
+            this.searchTbox.BorderSize = 1;
+            this.searchTbox.Font = new System.Drawing.Font("Century Gothic", 11F);
+            this.searchTbox.ForeColor = System.Drawing.Color.DimGray;
+            this.searchTbox.Location = new System.Drawing.Point(79, 6);
+            this.searchTbox.Margin = new System.Windows.Forms.Padding(4);
+            this.searchTbox.Multiline = false;
+            this.searchTbox.Name = "searchTbox";
+            this.searchTbox.Padding = new System.Windows.Forms.Padding(7);
+            this.searchTbox.PasswordChar = false;
+            this.searchTbox.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.searchTbox.PlaceholderText = "";
+            this.searchTbox.ReadOnly = false;
+            this.searchTbox.Size = new System.Drawing.Size(342, 35);
+            this.searchTbox.TabIndex = 65;
+            this.searchTbox.Texts = "";
+            this.searchTbox.UnderlinedStyle = false;
+            this.searchTbox._TextChanged += new System.EventHandler(this.SearchTbox_TextChanged);
             // 
             // btnLimpiarBusqueda
             // 
@@ -103,7 +104,7 @@ namespace PresentationLayer.Forms.Employee
             this.btnLimpiarBusqueda.Size = new System.Drawing.Size(42, 35);
             this.btnLimpiarBusqueda.TabIndex = 54;
             this.btnLimpiarBusqueda.UseVisualStyleBackColor = false;
-            this.btnLimpiarBusqueda.Click += new System.EventHandler(this.btnLimpiarBusqueda_Click);
+            this.btnLimpiarBusqueda.Click += new System.EventHandler(this.ClearSearchBtn_Click);
             // 
             // label13
             // 
@@ -194,7 +195,7 @@ namespace PresentationLayer.Forms.Employee
             this.btnEliminar.TabIndex = 66;
             this.btnEliminar.Text = "  Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.btnEliminar.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // btnModificar
             // 
@@ -216,7 +217,7 @@ namespace PresentationLayer.Forms.Employee
             this.btnModificar.TabIndex = 67;
             this.btnModificar.Text = "  Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            this.btnModificar.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
             // btnNuevo
             // 
@@ -238,7 +239,7 @@ namespace PresentationLayer.Forms.Employee
             this.btnNuevo.TabIndex = 65;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            this.btnNuevo.Click += new System.EventHandler(this.AddBtn_Click);
             // 
             // btnNext
             // 
@@ -299,7 +300,7 @@ namespace PresentationLayer.Forms.Employee
         public FontAwesome.Sharp.IconButton btnNext;
 
         private System.Windows.Forms.Panel panel2;
-        private PresentationLayer.Components.CustomTextBox tboxBusqueda;
+        private PresentationLayer.Components.CustomTextBox searchTbox;
         private FontAwesome.Sharp.IconButton btnLimpiarBusqueda;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;

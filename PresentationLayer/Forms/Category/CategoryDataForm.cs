@@ -19,11 +19,13 @@ namespace Presentacion.Formularios.CategoriaNormas
         {
             InitializeComponent();
             _categoryService = categoryService;
+            
+            this.Shown += new EventHandler(CategoryDataForm_Shown);
         }
 
         private void ClearForm()
         {
-            tboxNombreRol.Clear();
+            tboxCategoryName.Clear();
         }
 
         private void ErrorMessage(string message)
@@ -40,16 +42,16 @@ namespace Presentacion.Formularios.CategoriaNormas
         {
             try
             {
-                var category = new CategoriaDeNorma
+                var category = new CategoryLaw
                 {
-                    CodTipoNorma = operacion == "Actualizar" ? idCategoria : 0, // Asume que tboxCodRol es un TextBox para el ID del rol
-                    TipoDeNorma = TextTransformer.CapitalizeFirstLetter(tboxNombreRol.Texts.Trim())
+                    CodCategory = operacion == "Actualizar" ? idCategoria : 0, // Asume que tboxCodRol es un TextBox para el ID del rol
+                    CategoryName = TextTransformer.CapitalizeFirstLetter(tboxCategoryName.Texts.Trim())
                 };
 
                 if (operacion == "Insertar")
                 {
                     _categoryService.Insert(category, idUsuario);
-                    OkMessage("Categoria de Norma registrada");
+                    OkMessage("Categoria de Law registrada");
                     Close();
                 }
                 else if (operacion == "Actualizar")
@@ -89,6 +91,10 @@ namespace Presentacion.Formularios.CategoriaNormas
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void CategoryDataForm_Shown(object sender, EventArgs e)
+        {
+            tboxCategoryName.SetFocus();
         }
     }
 }

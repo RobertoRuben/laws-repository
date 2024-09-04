@@ -2,10 +2,10 @@
 {
     public class UserDTO
     {
-        public int CodUsuario { get; set; }
-        public string NombreTrabajador { get; set; }
-        public string NombreUsuario { get; set; }
-        public string NombreRol { get; set; }
-        public string Estado { get; set; }
+        public int CodUser { get; set; }
+        public string EmployeeName { get; set; }
+        public string UserName { get; set; }
+        public string RolName { get; set; }
+        public string State { get; set; }
     }
 }

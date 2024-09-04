@@ -10,27 +10,27 @@ namespace PresentationLayer.Forms.User
     public partial class UserListForm : Form
     {
         private MainForm mainForm;
-        private string operacion = "";
-        public int idUsuarioSesion;
+        private string operation = "";
+        public int userSesionId;
         
         private UserService _userService;
         
-        public UserListForm(MainForm main, IUsuarioRepository userRepository)
+        public UserListForm(MainForm main, IUserRepository userRepository)
         {
             InitializeComponent();
             _userService = new UserService(userRepository);
             this.mainForm = main;
-            tboxBusqueda.TextChanged += tboxBusqueda_TextChanged; 
-            CargarDataGrid();
-            FormatoDataGrid();
+            tboxBusqueda.TextChanged += SearchTbox_TextChanged; 
+            DataGridLoad();
+            DataGridFormat();
         }
 
-        private void CargarDataGrid()
+        private void DataGridLoad()
         {
             dgvUsers.DataSource = _userService.GetAll();
             lblResultados.Text = "Total de Registros: " + Convert.ToString(dgvUsers.Rows.Count);
         }
-        private void BuscarUsuarios()
+        private void UserSearch()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace PresentationLayer.Forms.User
                 tboxBusqueda.Clear();
             }
         }
-        private void FormatoDataGrid()
+        private void DataGridFormat()
         {
             dgvUsers.Columns[0].HeaderText = "Id";
             dgvUsers.Columns[1].HeaderText = "Trabajador";
@@ -67,17 +67,17 @@ namespace PresentationLayer.Forms.User
             MessageBox.Show(mensaje, "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnLimpiarBusqueda_Click(object sender, EventArgs e)
+        private void ClearSearchBtn_Click(object sender, EventArgs e)
         {
             tboxBusqueda.Clear();
         }
 
-        private void tboxBusqueda_TextChanged(object sender, EventArgs e)
+        private void SearchTbox_TextChanged(object sender, EventArgs e)
         {
-            BuscarUsuarios();
+            UserSearch();
         }
 
-        private void btnInhabilitar_Click(object sender, EventArgs e)
+        private void DisableBtn_Click(object sender, EventArgs e)
         {
             if (dgvUsers.CurrentRow != null)
             {
@@ -87,11 +87,11 @@ namespace PresentationLayer.Forms.User
                 {
                     try
                     {
-                        bool isDesable = _userService.Disable(idUser, idUsuarioSesion);
+                        bool isDesable = _userService.Disable(idUser, userSesionId);
                         if (isDesable)
                         {
                             OkMessage("Usuario inhabilitado.");
-                            CargarDataGrid();
+                            DataGridLoad();
                         }
                         else
                         {
@@ -100,57 +100,54 @@ namespace PresentationLayer.Forms.User
                     }
                     catch (Exception ex)
                     {
-                        ErrorMessage("Error al eliminar el la categoria: " + ex.Message);
+                        ErrorMessage("Error al eliminar el usuario: " + ex.Message);
                     }
                 }
             }
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void AddBtn_Click(object sender, EventArgs e)
         {
-            UserService userService = new UserService(new UsuarioRepository());
+            UserService userService = new UserService(new UserRepository());
             RolService rolService = new RolService(new RolRepository());
             EmployeeService employeeService = new EmployeeService(new EmployeeRepository());
             UserDataForm userDataForm = new UserDataForm(userService, employeeService, rolService);
 
-            userDataForm.operacion = "Insertar";
-            userDataForm.idUsuarioSesion = idUsuarioSesion;
+            userDataForm.operation = "Insertar";
+            userDataForm.userSesionId = userSesionId;
             userDataForm.lblSeccion.Text = "Registrar Usuario";
-            Console.WriteLine("El id del usuario de la sesion activa es: " + userDataForm.idUsuarioSesion);
             this.mainForm.SetTransparency(true);
             userDataForm.ShowDialog();
             this.mainForm.SetTransparency(false);
-            CargarDataGrid();
+            DataGridLoad();
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void UpdateBtn_Click(object sender, EventArgs e)
         {
-            UserService userService = new UserService(new UsuarioRepository());
+            UserService userService = new UserService(new UserRepository());
             RolService rolService = new RolService(new RolRepository());
             EmployeeService employeeService = new EmployeeService(new EmployeeRepository());
             UserDataForm userDataForm = new UserDataForm(userService, employeeService, rolService);
 
-            userDataForm.operacion = "Actualizar";
-            userDataForm.idUsuarioSesion = idUsuarioSesion;
-            userDataForm.idUsuario = Convert.ToInt32(dgvUsers.CurrentRow.Cells[0].Value);
+            userDataForm.operation = "Actualizar";
+            userDataForm.userSesionId = userSesionId;
+            userDataForm.UserId = Convert.ToInt32(dgvUsers.CurrentRow.Cells[0].Value);
 
-            userDataForm.cboxTrabajador.Texts = dgvUsers.CurrentRow.Cells[1].Value.ToString();
-            userDataForm.cboxTrabajador.Enabled = false;
-            userDataForm.tboxUsuario.Texts = dgvUsers.CurrentRow.Cells[2].Value.ToString();
+            userDataForm.cboxEmployee.Texts = dgvUsers.CurrentRow.Cells[1].Value.ToString();
+            userDataForm.cboxEmployee.Enabled = false;
+            userDataForm.tboxUser.Texts = dgvUsers.CurrentRow.Cells[2].Value.ToString();
             userDataForm.cboxRol.Texts = dgvUsers.CurrentRow.Cells[3].Value.ToString();
 
             string estado = dgvUsers.CurrentRow.Cells[4].Value.ToString();
-            userDataForm.rbtnActivo.Checked = estado == "Activo";
-            userDataForm.rbtnInactivo.Checked = estado == "Inactivo";
+            userDataForm.rbtnActivate.Checked = estado == "Activo";
+            userDataForm.rbtnInactive.Checked = estado == "Inactivo";
             
             
             userDataForm.lblSeccion.Text = "Actualizar datos de usuario";
-            Console.WriteLine("El id del usuario de la sesion activa es: " + userDataForm.idUsuarioSesion);
-            Console.WriteLine("El id del registro a modificar es: " + userDataForm.idUsuario);
             this.mainForm.SetTransparency(true);
             userDataForm.ShowDialog();
             this.mainForm.SetTransparency(false);
-            CargarDataGrid();
+            DataGridLoad();
         }
     }
 }

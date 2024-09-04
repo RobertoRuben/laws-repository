@@ -10,17 +10,17 @@ namespace BusinessLayer.Services
 {
     public class AuthService
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUserRepository _userRepository;
 
-        public AuthService(IUsuarioRepository usuarioRepository)
+        public AuthService(IUserRepository userRepository)
         {
-            _usuarioRepository = usuarioRepository;
+            _userRepository = userRepository;
         }
 
         public UserDTO Login(string nombreUsuario, string contraseña)
         {
             string hashedPassword = PasswordEncryptor.Encryptor(contraseña);
-            UserDTO userDto = _usuarioRepository.Login(nombreUsuario, hashedPassword);
+            UserDTO userDto = _userRepository.Login(nombreUsuario, hashedPassword);
             if (userDto == null)
             {
                 throw new BusinessException("Nombre de usuario o contraseña incorrectos");
@@ -28,11 +28,11 @@ namespace BusinessLayer.Services
             return userDto;
         }
 
-        public bool UpdateCredentials(int id, Usuario usuario)
+        public bool UpdateCredentials(int id, User user)
         {
             try
             {
-                UpdatePasswordValidator.Validate(usuario);
+                UpdatePasswordValidator.Validate(user);
 
             }
             catch (ArgumentException ex)
@@ -40,9 +40,9 @@ namespace BusinessLayer.Services
                 throw new ValidationException("La contraseña debe tener una longitud no menor a 8 digitos");
             }
             
-            usuario.Contraseña = PasswordEncryptor.Encryptor(usuario.Contraseña);
+            user.Password = PasswordEncryptor.Encryptor(user.Password);
             
-            return _usuarioRepository.UpdateCredentials(id, usuario);
+            return _userRepository.UpdateCredentials(id, user);
         }
     }
 }

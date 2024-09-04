@@ -8,12 +8,12 @@ using EntitiesLayer.Entities;
 
 namespace DataLayer.Repositories
 {
-    public class UsuarioRepository : IUsuarioRepository
+    public class UserRepository : IUserRepository
     {
         public UserDTO Login (string nombreUsuario, string contraseña)
         {
             UserDTO userDto = null;
-            using (SqlConnection conn = Conexion.getInstancia().CrearConexion())
+            using (SqlConnection conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Login", conn)
                 {
@@ -31,11 +31,11 @@ namespace DataLayer.Repositories
                         {
                             userDto = new UserDTO
                             {
-                                CodUsuario = reader.GetInt32(reader.GetOrdinal("CodUsuario")),
-                                NombreUsuario = reader.GetString(reader.GetOrdinal("Usuario")),
-                                NombreTrabajador = reader.GetString(reader.GetOrdinal("Nombre")),
-                                NombreRol = reader.GetString(reader.GetOrdinal("Rol")),
-                                Estado = reader.GetString(reader.GetOrdinal("Estado"))
+                                CodUser = reader.GetInt32(reader.GetOrdinal("CodUsuario")),
+                                UserName = reader.GetString(reader.GetOrdinal("Usuario")),
+                                State = reader.GetString(reader.GetOrdinal("Estado")),
+                                RolName = reader.GetString(reader.GetOrdinal("Rol")),
+                                EmployeeName = reader.GetString(reader.GetOrdinal("Nombre")),
                             };
                         }
                     }
@@ -52,14 +52,14 @@ namespace DataLayer.Repositories
             return userDto;
         }
 
-        public bool UpdateCredentials(int id, Usuario usuario)
+        public bool UpdateCredentials(int id, User user)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_ActualizarCredenciales", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CodUsuario", id);
-                cmd.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
+                cmd.Parameters.AddWithValue("@Contraseña", user.Password);
 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
                 rptaParam.Direction = ParameterDirection.Output;
@@ -69,8 +69,8 @@ namespace DataLayer.Repositories
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    int respuesta = (int)rptaParam.Value;
-                    return respuesta == 1;
+                    int rpta = (int)rptaParam.Value;
+                    return rpta == 1;
                 }
                 catch (Exception ex)
                 {
@@ -82,20 +82,20 @@ namespace DataLayer.Repositories
                 }
             }
         }
-        public int Insert(Usuario usuario, int codUsuario)
+        public int Insert(User user, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Registrar", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
                 
-                cmd.Parameters.AddWithValue("@CodTrabajador", usuario.CodTrabajador);
-                cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
-                cmd.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
-                cmd.Parameters.AddWithValue("@Estado", usuario.Estado);
-                cmd.Parameters.AddWithValue("@CodRol", usuario.CodRol);
+                cmd.Parameters.AddWithValue("@CodTrabajador", user.CodEmployee);
+                cmd.Parameters.AddWithValue("@NombreUsuario", user.UserName);
+                cmd.Parameters.AddWithValue("@Contraseña", user.Password);
+                cmd.Parameters.AddWithValue("@Estado", user.State);
+                cmd.Parameters.AddWithValue("@CodRol", user.CodRol);
                 cmd.Parameters.AddWithValue("@CodUsuario", codUsuario);
                 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
@@ -118,20 +118,20 @@ namespace DataLayer.Repositories
                 }
             }
         }
-        public bool Update(Usuario usuario, int codUsuario)
+        public bool Update(User user, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Actualizar", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
                 
-                cmd.Parameters.AddWithValue("@CodUsuario", usuario.CodUsuario);
-                cmd.Parameters.AddWithValue("@CodRol", usuario.CodRol);
-                cmd.Parameters.AddWithValue("@NombreUsuario", usuario.NombreUsuario);
-                cmd.Parameters.AddWithValue("@Contraseña", usuario.Contraseña);
-                cmd.Parameters.AddWithValue("@Estado", usuario.Estado);
+                cmd.Parameters.AddWithValue("@CodUsuario", user.CodUser);
+                cmd.Parameters.AddWithValue("@CodRol", user.CodRol);
+                cmd.Parameters.AddWithValue("@NombreUsuario", user.UserName);
+                cmd.Parameters.AddWithValue("@Contraseña", user.Password);
+                cmd.Parameters.AddWithValue("@Estado", user.State);
                 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
                 rptaParam.Direction = ParameterDirection.Output;
@@ -155,7 +155,7 @@ namespace DataLayer.Repositories
         }
         public bool Disable(int id, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Inhabilitar", conn)
                 {
@@ -194,7 +194,7 @@ namespace DataLayer.Repositories
         {
             var users = new List<UserDTO>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Listar", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -208,11 +208,11 @@ namespace DataLayer.Repositories
                         {
                             var usuarioDto = new UserDTO
                             {
-                                CodUsuario = reader.GetInt32(reader.GetOrdinal("Codigo")),
-                                NombreTrabajador = reader.GetString(reader.GetOrdinal("Trabajador")),
-                                NombreUsuario = reader.GetString(reader.GetOrdinal("Usuario")),
-                                NombreRol = reader.GetString(reader.GetOrdinal("Rol")),
-                                Estado = reader.GetString(reader.GetOrdinal("Estado"))
+                                CodUser = reader.GetInt32(reader.GetOrdinal("Codigo")),
+                                EmployeeName = reader.GetString(reader.GetOrdinal("Trabajador")),
+                                UserName = reader.GetString(reader.GetOrdinal("Usuario")),
+                                RolName = reader.GetString(reader.GetOrdinal("Rol")),
+                                State = reader.GetString(reader.GetOrdinal("Estado"))
                             };
                             users.Add(usuarioDto);
                         }
@@ -235,7 +235,7 @@ namespace DataLayer.Repositories
         {
             var users = new List<UserDTO>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Buscar", conn)
                 {
@@ -252,11 +252,11 @@ namespace DataLayer.Repositories
                         {
                             var usuarioDto = new UserDTO
                             {
-                                CodUsuario = reader.GetInt32(reader.GetOrdinal("Codigo")),
-                                NombreTrabajador = reader.GetString(reader.GetOrdinal("Trabajador")),
-                                NombreUsuario = reader.GetString(reader.GetOrdinal("Usuario")),
-                                NombreRol = reader.GetString(reader.GetOrdinal("Rol")),
-                                Estado = reader.GetString(reader.GetOrdinal("Estado"))
+                                CodUser = reader.GetInt32(reader.GetOrdinal("Codigo")),
+                                EmployeeName = reader.GetString(reader.GetOrdinal("Trabajador")),
+                                UserName = reader.GetString(reader.GetOrdinal("Usuario")),
+                                RolName = reader.GetString(reader.GetOrdinal("Rol")),
+                                State = reader.GetString(reader.GetOrdinal("Estado"))
                             };
                             users.Add(usuarioDto);
                         }
@@ -277,7 +277,7 @@ namespace DataLayer.Repositories
         
         public bool Exists(IComparable searchValue)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_Usuario_Existe", conn)
                 {
@@ -307,8 +307,6 @@ namespace DataLayer.Repositories
                 }
             }
         }
-
-        
 
     }
 }

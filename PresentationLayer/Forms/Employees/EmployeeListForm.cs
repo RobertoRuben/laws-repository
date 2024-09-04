@@ -2,18 +2,16 @@
 using System.Windows.Forms;
 using BusinessLayer.Services;
 using DataLayer.Repositories;
-using EntitiesLayer.Entities;
 using PresentationLayer.Forms.Common;
-using PresentationLayer.Forms.Employee;
 
-namespace PresentationLayer.Forms.Employee
+namespace PresentationLayer.Forms.Employees
 {
     public partial class EmployeeListForm : Form
     {
         private MainForm mainForm;
-        private string operacion = "";
+        private string operation = "";
         private EmployeeService _employeeService;
-        public int idUsuario;
+        public int userId;
         
         private int currentPage = 1;
         private int pageSize = 20; 
@@ -23,36 +21,36 @@ namespace PresentationLayer.Forms.Employee
             InitializeComponent();
             _employeeService = new EmployeeService(employeeRepository);
             this.mainForm = main;
-            tboxBusqueda.TextChanged += tboxBusqueda_TextChanged; 
-            CargarDatagrid();
-            FormatoDataGrid();
+            searchTbox.TextChanged += SearchTbox_TextChanged; 
+            DataGridLoad();
+            DataGridFormat();
         }
 
-        public void CargarDatagrid(int pageNumber = 1)
+        public void DataGridLoad(int pageNumber = 1)
         {
             currentPage = pageNumber;
-            var trabajadores = _employeeService.GetAll(pageSize, pageNumber); 
+            var employee = _employeeService.GetAll(pageSize, pageNumber); 
 
-            dgvEmployees.DataSource = trabajadores; 
+            dgvEmployees.DataSource = employee; 
             
-            btnNext.Enabled = trabajadores.Count == pageSize;
+            btnNext.Enabled = employee.Count == pageSize;
             
             lblResultados.Text = $"Mostrando página: {currentPage}";
         }
         
         private void btnNext_Click(object sender, EventArgs e)
         {
-            CargarDatagrid(currentPage + 1);
+            DataGridLoad(currentPage + 1);
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
             {
-                CargarDatagrid(currentPage - 1);
+                DataGridLoad(currentPage - 1);
             }
         }
-        private void FormatoDataGrid()
+        private void DataGridFormat()
         {
             dgvEmployees.Columns[0].HeaderText = "Id";
             dgvEmployees.Columns[1].HeaderText = "Dni";
@@ -68,18 +66,18 @@ namespace PresentationLayer.Forms.Employee
             dgvEmployees.Columns[5].Width = 80;
         }
         
-        private void BuscarCategoria()
+        private void CategorySearch()
         {
             try
             {
-                var employee = _employeeService.FindBy(tboxBusqueda.Texts.Trim());
+                var employee = _employeeService.FindBy(searchTbox.Texts.Trim());
                 dgvEmployees.DataSource = employee;
                 lblResultados.Text = "Registros con coincidencia: " + dgvEmployees.RowCount;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                ErrorMessage(e.Message);
-                tboxBusqueda.Clear();
+                ErrorMessage(ex.Message);
+                searchTbox.Clear();
             }
         }
 
@@ -93,61 +91,63 @@ namespace PresentationLayer.Forms.Employee
             MessageBox.Show(mensaje, "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void tboxBusqueda_TextChanged(object sender, EventArgs e)
+        private void SearchTbox_TextChanged(object sender, EventArgs e)
         {
-            BuscarCategoria();
+            CategorySearch();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void AddBtn_Click(object sender, EventArgs e)
         {
             EmployeeService employeeService = new EmployeeService(new EmployeeRepository());
             EmployeeDataForm employeeDataForm = new EmployeeDataForm(employeeService);
-            employeeDataForm.operacion = "Insertar";
-            employeeDataForm.idUsuario = idUsuario;
+            employeeDataForm.operation = "Insertar";
+            employeeDataForm.lblSection.Text = "Registrar Trabajador";
+            employeeDataForm.userId = userId;
             this.mainForm.SetTransparency(true);
             employeeDataForm.ShowDialog();
-            CargarDatagrid();
+            DataGridLoad();
             this.mainForm.SetTransparency(false); 
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void UpdateBtn_Click(object sender, EventArgs e)
         {
             EmployeeService employeeService = new EmployeeService(new EmployeeRepository());
             EmployeeDataForm employeeDataForm = new EmployeeDataForm(employeeService);
-            employeeDataForm.operacion = "Actualizar";
-            employeeDataForm.idUsuario = idUsuario;
+            employeeDataForm.operation = "Actualizar";
+            employeeDataForm.lblSection.Text = "Actualizar datos de trabajador";
+            employeeDataForm.userId = userId;
             
-            employeeDataForm.idEmpleado = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
+            employeeDataForm.employeeId = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
             employeeDataForm.tboxDni.Texts = dgvEmployees.CurrentRow.Cells[1].Value.ToString().Trim();
-            employeeDataForm.tboxNombre.Texts = dgvEmployees.CurrentRow.Cells[2].Value.ToString().Trim();
-            employeeDataForm.tboxApellidoPaterno.Texts = dgvEmployees.CurrentRow.Cells[3].Value.ToString().Trim();
-            employeeDataForm.tboxApellidoMaterno.Texts = dgvEmployees.CurrentRow.Cells[4].Value.ToString().Trim();
+            employeeDataForm.tboxName.Texts = dgvEmployees.CurrentRow.Cells[2].Value.ToString().Trim();
+            employeeDataForm.tboxFaternalLastName.Texts = dgvEmployees.CurrentRow.Cells[3].Value.ToString().Trim();
+            employeeDataForm.tboxMaternalLastName.Texts = dgvEmployees.CurrentRow.Cells[4].Value.ToString().Trim();
             
-            string estado = dgvEmployees.CurrentRow.Cells[5].Value.ToString().Trim();
-            employeeDataForm.rbtnMasculino.Checked = estado == "M";
-            employeeDataForm.rbtnFemenino.Checked = estado == "F";
+            string state = dgvEmployees.CurrentRow.Cells[5].Value.ToString().Trim();
+            employeeDataForm.rbtnMale.Checked = state == "M";
+            employeeDataForm.rbtnFemale.Checked = state == "F";
             
             this.mainForm.SetTransparency(true);
             employeeDataForm.ShowDialog();
-            CargarDatagrid();
+            DataGridLoad();
             this.mainForm.SetTransparency(false); 
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void DeleteBtn_Click(object sender, EventArgs e)
         {
             if (dgvEmployees.CurrentRow != null)
             {
-                int idEmployee = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
+                int employeeId = Convert.ToInt32(dgvEmployees.CurrentRow.Cells[0].Value);
                 DialogResult result = MessageBox.Show("¿Deseas eliminar a este trabajador?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     try
                     {
-                        bool isDeleted = _employeeService.Delete(idEmployee, idUsuario);
+                        bool isDeleted = _employeeService.Delete(employeeId, userId);
                         if (isDeleted)
                         {
-                            OkMessage("Trabajador eliminada exitosamente.");
-                            CargarDatagrid();
+                            OkMessage("Trabajador eliminado exitosamente.");
+                            DataGridLoad();
                         }
                         else
                         {
@@ -166,9 +166,9 @@ namespace PresentationLayer.Forms.Employee
             }
         }
 
-        private void btnLimpiarBusqueda_Click(object sender, EventArgs e)
+        private void ClearSearchBtn_Click(object sender, EventArgs e)
         {
-            tboxBusqueda.Clear();
+            searchTbox.Clear();
         }
     }
 }

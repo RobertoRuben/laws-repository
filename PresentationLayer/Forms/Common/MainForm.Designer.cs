@@ -31,32 +31,31 @@ namespace PresentationLayer.Forms.Common
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pMenu = new System.Windows.Forms.Panel();
-            this.subMenuUsuarios = new System.Windows.Forms.Panel();
-            this.tbnRoles = new FontAwesome.Sharp.IconButton();
-            this.btnTrabajadores = new FontAwesome.Sharp.IconButton();
-            this.btnUsuarios = new FontAwesome.Sharp.IconButton();
-            this.subMenuNormas = new System.Windows.Forms.Panel();
-            this.btnCategorias = new FontAwesome.Sharp.IconButton();
-            this.btnNormas = new FontAwesome.Sharp.IconButton();
+            this.usersSubMenu = new System.Windows.Forms.Panel();
+            this.RolBtn = new FontAwesome.Sharp.IconButton();
+            this.EmployeeBtn = new FontAwesome.Sharp.IconButton();
+            this.UsersBtn = new FontAwesome.Sharp.IconButton();
+            this.lawsSubMenu = new System.Windows.Forms.Panel();
+            this.CategoriesBtn = new FontAwesome.Sharp.IconButton();
+            this.LawsBtn = new FontAwesome.Sharp.IconButton();
             this.btnConsultas = new FontAwesome.Sharp.IconButton();
             this.pImage = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pBarraTitulo = new System.Windows.Forms.Panel();
-            this.lblNombreRol = new System.Windows.Forms.Label();
-            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.rolLbl = new System.Windows.Forms.Label();
+            this.userNameLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnPerfil = new FontAwesome.Sharp.IconButton();
+            this.UserProfielBtn = new FontAwesome.Sharp.IconButton();
             this.lblMainForm = new System.Windows.Forms.Label();
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.btnClose = new FontAwesome.Sharp.IconButton();
             this.btnMaximize = new FontAwesome.Sharp.IconButton();
             this.pContainer = new System.Windows.Forms.Panel();
             this.pMenu.SuspendLayout();
-            this.subMenuUsuarios.SuspendLayout();
-            this.subMenuNormas.SuspendLayout();
+            this.usersSubMenu.SuspendLayout();
+            this.lawsSubMenu.SuspendLayout();
             this.pImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pBarraTitulo.SuspendLayout();
@@ -65,10 +64,10 @@ namespace PresentationLayer.Forms.Common
             // pMenu
             // 
             this.pMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.pMenu.Controls.Add(this.subMenuUsuarios);
-            this.pMenu.Controls.Add(this.btnUsuarios);
-            this.pMenu.Controls.Add(this.subMenuNormas);
-            this.pMenu.Controls.Add(this.btnNormas);
+            this.pMenu.Controls.Add(this.usersSubMenu);
+            this.pMenu.Controls.Add(this.UsersBtn);
+            this.pMenu.Controls.Add(this.lawsSubMenu);
+            this.pMenu.Controls.Add(this.LawsBtn);
             this.pMenu.Controls.Add(this.btnConsultas);
             this.pMenu.Controls.Add(this.pImage);
             this.pMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -77,131 +76,131 @@ namespace PresentationLayer.Forms.Common
             this.pMenu.Size = new System.Drawing.Size(220, 681);
             this.pMenu.TabIndex = 0;
             // 
-            // subMenuUsuarios
+            // usersSubMenu
             // 
-            this.subMenuUsuarios.Controls.Add(this.tbnRoles);
-            this.subMenuUsuarios.Controls.Add(this.btnTrabajadores);
-            this.subMenuUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.subMenuUsuarios.Location = new System.Drawing.Point(0, 341);
-            this.subMenuUsuarios.Name = "subMenuUsuarios";
-            this.subMenuUsuarios.Size = new System.Drawing.Size(220, 96);
-            this.subMenuUsuarios.TabIndex = 7;
+            this.usersSubMenu.Controls.Add(this.RolBtn);
+            this.usersSubMenu.Controls.Add(this.EmployeeBtn);
+            this.usersSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.usersSubMenu.Location = new System.Drawing.Point(0, 341);
+            this.usersSubMenu.Name = "usersSubMenu";
+            this.usersSubMenu.Size = new System.Drawing.Size(220, 96);
+            this.usersSubMenu.TabIndex = 7;
             // 
-            // tbnRoles
+            // RolBtn
             // 
-            this.tbnRoles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tbnRoles.FlatAppearance.BorderSize = 0;
-            this.tbnRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tbnRoles.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnRoles.ForeColor = System.Drawing.Color.White;
-            this.tbnRoles.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.tbnRoles.IconColor = System.Drawing.Color.White;
-            this.tbnRoles.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.tbnRoles.Location = new System.Drawing.Point(0, 40);
-            this.tbnRoles.Name = "tbnRoles";
-            this.tbnRoles.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.tbnRoles.Size = new System.Drawing.Size(220, 40);
-            this.tbnRoles.TabIndex = 1;
-            this.tbnRoles.Text = "Rol";
-            this.tbnRoles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tbnRoles.UseVisualStyleBackColor = true;
-            this.tbnRoles.Click += new System.EventHandler(this.tbnRoles_Click);
+            this.RolBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RolBtn.FlatAppearance.BorderSize = 0;
+            this.RolBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RolBtn.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RolBtn.ForeColor = System.Drawing.Color.White;
+            this.RolBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.RolBtn.IconColor = System.Drawing.Color.White;
+            this.RolBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.RolBtn.Location = new System.Drawing.Point(0, 40);
+            this.RolBtn.Name = "RolBtn";
+            this.RolBtn.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
+            this.RolBtn.Size = new System.Drawing.Size(220, 40);
+            this.RolBtn.TabIndex = 1;
+            this.RolBtn.Text = "Roles";
+            this.RolBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RolBtn.UseVisualStyleBackColor = true;
+            this.RolBtn.Click += new System.EventHandler(this.RolBtn_Click);
             // 
-            // btnTrabajadores
+            // EmployeeBtn
             // 
-            this.btnTrabajadores.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTrabajadores.FlatAppearance.BorderSize = 0;
-            this.btnTrabajadores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTrabajadores.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTrabajadores.ForeColor = System.Drawing.Color.White;
-            this.btnTrabajadores.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnTrabajadores.IconColor = System.Drawing.Color.White;
-            this.btnTrabajadores.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTrabajadores.Location = new System.Drawing.Point(0, 0);
-            this.btnTrabajadores.Name = "btnTrabajadores";
-            this.btnTrabajadores.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.btnTrabajadores.Size = new System.Drawing.Size(220, 40);
-            this.btnTrabajadores.TabIndex = 0;
-            this.btnTrabajadores.Text = "Trabajadores";
-            this.btnTrabajadores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTrabajadores.UseVisualStyleBackColor = true;
-            this.btnTrabajadores.Click += new System.EventHandler(this.btnTrabajadores_Click);
+            this.EmployeeBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EmployeeBtn.FlatAppearance.BorderSize = 0;
+            this.EmployeeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EmployeeBtn.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmployeeBtn.ForeColor = System.Drawing.Color.White;
+            this.EmployeeBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.EmployeeBtn.IconColor = System.Drawing.Color.White;
+            this.EmployeeBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.EmployeeBtn.Location = new System.Drawing.Point(0, 0);
+            this.EmployeeBtn.Name = "EmployeeBtn";
+            this.EmployeeBtn.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
+            this.EmployeeBtn.Size = new System.Drawing.Size(220, 40);
+            this.EmployeeBtn.TabIndex = 0;
+            this.EmployeeBtn.Text = "Trabajadores";
+            this.EmployeeBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.EmployeeBtn.UseVisualStyleBackColor = true;
+            this.EmployeeBtn.Click += new System.EventHandler(this.EmployeesBtn_Click);
             // 
-            // btnUsuarios
+            // UsersBtn
             // 
-            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUsuarios.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(105)))), ((int)(((byte)(153)))));
-            this.btnUsuarios.FlatAppearance.BorderSize = 0;
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.btnUsuarios.IconColor = System.Drawing.Color.White;
-            this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnUsuarios.IconSize = 36;
-            this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 296);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnUsuarios.Size = new System.Drawing.Size(220, 45);
-            this.btnUsuarios.TabIndex = 6;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnUsuarios.UseVisualStyleBackColor = true;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            this.UsersBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.UsersBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(105)))), ((int)(((byte)(153)))));
+            this.UsersBtn.FlatAppearance.BorderSize = 0;
+            this.UsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UsersBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsersBtn.ForeColor = System.Drawing.Color.White;
+            this.UsersBtn.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
+            this.UsersBtn.IconColor = System.Drawing.Color.White;
+            this.UsersBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.UsersBtn.IconSize = 36;
+            this.UsersBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UsersBtn.Location = new System.Drawing.Point(0, 296);
+            this.UsersBtn.Name = "UsersBtn";
+            this.UsersBtn.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.UsersBtn.Size = new System.Drawing.Size(220, 45);
+            this.UsersBtn.TabIndex = 6;
+            this.UsersBtn.Text = "Usuarios";
+            this.UsersBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UsersBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.UsersBtn.UseVisualStyleBackColor = true;
+            this.UsersBtn.Click += new System.EventHandler(this.UsersBtn_Click);
             // 
-            // subMenuNormas
+            // lawsSubMenu
             // 
-            this.subMenuNormas.Controls.Add(this.btnCategorias);
-            this.subMenuNormas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.subMenuNormas.Location = new System.Drawing.Point(0, 248);
-            this.subMenuNormas.Name = "subMenuNormas";
-            this.subMenuNormas.Size = new System.Drawing.Size(220, 48);
-            this.subMenuNormas.TabIndex = 5;
+            this.lawsSubMenu.Controls.Add(this.CategoriesBtn);
+            this.lawsSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lawsSubMenu.Location = new System.Drawing.Point(0, 248);
+            this.lawsSubMenu.Name = "lawsSubMenu";
+            this.lawsSubMenu.Size = new System.Drawing.Size(220, 48);
+            this.lawsSubMenu.TabIndex = 5;
             // 
-            // btnCategorias
+            // CategoriesBtn
             // 
-            this.btnCategorias.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCategorias.FlatAppearance.BorderSize = 0;
-            this.btnCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCategorias.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCategorias.ForeColor = System.Drawing.Color.White;
-            this.btnCategorias.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnCategorias.IconColor = System.Drawing.Color.White;
-            this.btnCategorias.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCategorias.Location = new System.Drawing.Point(0, 0);
-            this.btnCategorias.Name = "btnCategorias";
-            this.btnCategorias.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnCategorias.Size = new System.Drawing.Size(220, 40);
-            this.btnCategorias.TabIndex = 0;
-            this.btnCategorias.Text = "Categorias";
-            this.btnCategorias.UseVisualStyleBackColor = true;
-            this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
+            this.CategoriesBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CategoriesBtn.FlatAppearance.BorderSize = 0;
+            this.CategoriesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CategoriesBtn.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoriesBtn.ForeColor = System.Drawing.Color.White;
+            this.CategoriesBtn.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.CategoriesBtn.IconColor = System.Drawing.Color.White;
+            this.CategoriesBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.CategoriesBtn.Location = new System.Drawing.Point(0, 0);
+            this.CategoriesBtn.Name = "CategoriesBtn";
+            this.CategoriesBtn.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.CategoriesBtn.Size = new System.Drawing.Size(220, 40);
+            this.CategoriesBtn.TabIndex = 0;
+            this.CategoriesBtn.Text = "Categorias";
+            this.CategoriesBtn.UseVisualStyleBackColor = true;
+            this.CategoriesBtn.Click += new System.EventHandler(this.CategoriesBtn_Click);
             // 
-            // btnNormas
+            // LawsBtn
             // 
-            this.btnNormas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNormas.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(105)))), ((int)(((byte)(153)))));
-            this.btnNormas.FlatAppearance.BorderSize = 0;
-            this.btnNormas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNormas.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNormas.ForeColor = System.Drawing.Color.White;
-            this.btnNormas.IconChar = FontAwesome.Sharp.IconChar.File;
-            this.btnNormas.IconColor = System.Drawing.Color.White;
-            this.btnNormas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNormas.IconSize = 36;
-            this.btnNormas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNormas.Location = new System.Drawing.Point(0, 203);
-            this.btnNormas.Name = "btnNormas";
-            this.btnNormas.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnNormas.Size = new System.Drawing.Size(220, 45);
-            this.btnNormas.TabIndex = 4;
-            this.btnNormas.Text = "Normas";
-            this.btnNormas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNormas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNormas.UseVisualStyleBackColor = true;
-            this.btnNormas.Click += new System.EventHandler(this.btnNormas_Click);
+            this.LawsBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LawsBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(105)))), ((int)(((byte)(153)))));
+            this.LawsBtn.FlatAppearance.BorderSize = 0;
+            this.LawsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LawsBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LawsBtn.ForeColor = System.Drawing.Color.White;
+            this.LawsBtn.IconChar = FontAwesome.Sharp.IconChar.File;
+            this.LawsBtn.IconColor = System.Drawing.Color.White;
+            this.LawsBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.LawsBtn.IconSize = 36;
+            this.LawsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LawsBtn.Location = new System.Drawing.Point(0, 203);
+            this.LawsBtn.Name = "LawsBtn";
+            this.LawsBtn.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.LawsBtn.Size = new System.Drawing.Size(220, 45);
+            this.LawsBtn.TabIndex = 4;
+            this.LawsBtn.Text = "Normas";
+            this.LawsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LawsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.LawsBtn.UseVisualStyleBackColor = true;
+            this.LawsBtn.Click += new System.EventHandler(this.LawsBtn_Click);
             // 
             // btnConsultas
             // 
@@ -238,10 +237,10 @@ namespace PresentationLayer.Forms.Common
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 29);
+            this.pictureBox1.Image = global::PresentationLayer.Properties.Resources.logo_muni;
+            this.pictureBox1.Location = new System.Drawing.Point(37, 16);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(211, 106);
+            this.pictureBox1.Size = new System.Drawing.Size(137, 126);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -249,11 +248,11 @@ namespace PresentationLayer.Forms.Common
             // pBarraTitulo
             // 
             this.pBarraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(236)))), ((int)(((byte)(240)))));
-            this.pBarraTitulo.Controls.Add(this.lblNombreRol);
-            this.pBarraTitulo.Controls.Add(this.lblNombreUsuario);
+            this.pBarraTitulo.Controls.Add(this.rolLbl);
+            this.pBarraTitulo.Controls.Add(this.userNameLbl);
             this.pBarraTitulo.Controls.Add(this.label2);
             this.pBarraTitulo.Controls.Add(this.label1);
-            this.pBarraTitulo.Controls.Add(this.btnPerfil);
+            this.pBarraTitulo.Controls.Add(this.UserProfielBtn);
             this.pBarraTitulo.Controls.Add(this.lblMainForm);
             this.pBarraTitulo.Controls.Add(this.btnMinimize);
             this.pBarraTitulo.Controls.Add(this.btnClose);
@@ -265,27 +264,27 @@ namespace PresentationLayer.Forms.Common
             this.pBarraTitulo.TabIndex = 1;
             this.pBarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pBarraSuperior_MouseDown);
             // 
-            // lblNombreRol
+            // rolLbl
             // 
-            this.lblNombreRol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombreRol.AutoSize = true;
-            this.lblNombreRol.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreRol.Location = new System.Drawing.Point(755, 39);
-            this.lblNombreRol.Name = "lblNombreRol";
-            this.lblNombreRol.Size = new System.Drawing.Size(34, 19);
-            this.lblNombreRol.TabIndex = 18;
-            this.lblNombreRol.Text = "Rol:";
+            this.rolLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rolLbl.AutoSize = true;
+            this.rolLbl.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rolLbl.Location = new System.Drawing.Point(755, 39);
+            this.rolLbl.Name = "rolLbl";
+            this.rolLbl.Size = new System.Drawing.Size(34, 19);
+            this.rolLbl.TabIndex = 18;
+            this.rolLbl.Text = "Rol:";
             // 
-            // lblNombreUsuario
+            // userNameLbl
             // 
-            this.lblNombreUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombreUsuario.AutoSize = true;
-            this.lblNombreUsuario.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreUsuario.Location = new System.Drawing.Point(755, 16);
-            this.lblNombreUsuario.Name = "lblNombreUsuario";
-            this.lblNombreUsuario.Size = new System.Drawing.Size(62, 19);
-            this.lblNombreUsuario.TabIndex = 17;
-            this.lblNombreUsuario.Text = "Usuario:";
+            this.userNameLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.userNameLbl.AutoSize = true;
+            this.userNameLbl.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userNameLbl.Location = new System.Drawing.Point(755, 16);
+            this.userNameLbl.Name = "userNameLbl";
+            this.userNameLbl.Size = new System.Drawing.Size(40, 19);
+            this.userNameLbl.TabIndex = 17;
+            this.userNameLbl.Text = "User:";
             // 
             // label2
             // 
@@ -309,22 +308,22 @@ namespace PresentationLayer.Forms.Common
             this.label1.TabIndex = 15;
             this.label1.Text = "Usuario:";
             // 
-            // btnPerfil
+            // UserProfielBtn
             // 
-            this.btnPerfil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPerfil.FlatAppearance.BorderSize = 0;
-            this.btnPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPerfil.ForeColor = System.Drawing.Color.Transparent;
-            this.btnPerfil.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
-            this.btnPerfil.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.btnPerfil.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPerfil.IconSize = 55;
-            this.btnPerfil.Location = new System.Drawing.Point(629, 12);
-            this.btnPerfil.Name = "btnPerfil";
-            this.btnPerfil.Size = new System.Drawing.Size(57, 48);
-            this.btnPerfil.TabIndex = 14;
-            this.btnPerfil.UseVisualStyleBackColor = true;
-            this.btnPerfil.Click += new System.EventHandler(this.btnPerfil_Click);
+            this.UserProfielBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UserProfielBtn.FlatAppearance.BorderSize = 0;
+            this.UserProfielBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UserProfielBtn.ForeColor = System.Drawing.Color.Transparent;
+            this.UserProfielBtn.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
+            this.UserProfielBtn.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.UserProfielBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.UserProfielBtn.IconSize = 55;
+            this.UserProfielBtn.Location = new System.Drawing.Point(629, 12);
+            this.UserProfielBtn.Name = "UserProfielBtn";
+            this.UserProfielBtn.Size = new System.Drawing.Size(57, 48);
+            this.UserProfielBtn.TabIndex = 14;
+            this.UserProfielBtn.UseVisualStyleBackColor = true;
+            this.UserProfielBtn.Click += new System.EventHandler(this.UsersProfileBtn_Click);
             // 
             // lblMainForm
             // 
@@ -413,11 +412,11 @@ namespace PresentationLayer.Forms.Common
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
+            this.Text = "Menú Principal";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pMenu.ResumeLayout(false);
-            this.subMenuUsuarios.ResumeLayout(false);
-            this.subMenuNormas.ResumeLayout(false);
+            this.usersSubMenu.ResumeLayout(false);
+            this.lawsSubMenu.ResumeLayout(false);
             this.pImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pBarraTitulo.ResumeLayout(false);
@@ -425,12 +424,12 @@ namespace PresentationLayer.Forms.Common
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Label lblNombreRol;
-        private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.Label rolLbl;
+        private System.Windows.Forms.Label userNameLbl;
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconButton btnPerfil;
+        private FontAwesome.Sharp.IconButton UserProfielBtn;
 
         private System.Windows.Forms.Label lblMainForm;
 
@@ -439,13 +438,13 @@ namespace PresentationLayer.Forms.Common
         private FontAwesome.Sharp.IconButton btnClose;
 
 
-        private FontAwesome.Sharp.IconButton btnNormas;
-        private System.Windows.Forms.Panel subMenuNormas;
-        private FontAwesome.Sharp.IconButton btnCategorias;
-        private FontAwesome.Sharp.IconButton btnUsuarios;
-        private System.Windows.Forms.Panel subMenuUsuarios;
-        private FontAwesome.Sharp.IconButton tbnRoles;
-        private FontAwesome.Sharp.IconButton btnTrabajadores;
+        private FontAwesome.Sharp.IconButton LawsBtn;
+        private System.Windows.Forms.Panel lawsSubMenu;
+        private FontAwesome.Sharp.IconButton CategoriesBtn;
+        private FontAwesome.Sharp.IconButton UsersBtn;
+        private System.Windows.Forms.Panel usersSubMenu;
+        private FontAwesome.Sharp.IconButton RolBtn;
+        private FontAwesome.Sharp.IconButton EmployeeBtn;
 
         private FontAwesome.Sharp.IconButton btnConsultas;
 

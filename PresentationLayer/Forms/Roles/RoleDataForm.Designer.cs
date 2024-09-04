@@ -36,9 +36,9 @@ namespace PresentationLayer.Forms.Roles
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.tboxNombreRol = new PresentationLayer.Components.CustomTextBox();
+            this.tboxRole = new PresentationLayer.Components.CustomTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblSection = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -66,7 +66,7 @@ namespace PresentationLayer.Forms.Roles
             this.btnSalir.TabIndex = 61;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            this.btnSalir.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // btnSave
             // 
@@ -87,7 +87,7 @@ namespace PresentationLayer.Forms.Roles
             this.btnSave.TabIndex = 59;
             this.btnSave.Text = "    Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // panel1
             // 
@@ -105,7 +105,7 @@ namespace PresentationLayer.Forms.Roles
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.tboxNombreRol);
+            this.panel3.Controls.Add(this.tboxRole);
             this.panel3.Location = new System.Drawing.Point(12, 79);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1015, 123);
@@ -122,34 +122,35 @@ namespace PresentationLayer.Forms.Roles
             this.label1.TabIndex = 50;
             this.label1.Text = "Nombre del Rol";
             // 
-            // tboxNombreRol
+            // tboxRole
             // 
-            this.tboxNombreRol.AllowNull = false;
-            this.tboxNombreRol.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxNombreRol.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxNombreRol.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxNombreRol.BorderRadius = 3;
-            this.tboxNombreRol.BorderSize = 1;
-            this.tboxNombreRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNombreRol.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxNombreRol.Location = new System.Drawing.Point(20, 44);
-            this.tboxNombreRol.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxNombreRol.Multiline = false;
-            this.tboxNombreRol.Name = "tboxNombreRol";
-            this.tboxNombreRol.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxNombreRol.PasswordChar = false;
-            this.tboxNombreRol.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxNombreRol.PlaceholderText = "";
-            this.tboxNombreRol.ReadOnly = false;
-            this.tboxNombreRol.Size = new System.Drawing.Size(973, 31);
-            this.tboxNombreRol.TabIndex = 49;
-            this.tboxNombreRol.Texts = "";
-            this.tboxNombreRol.UnderlinedStyle = false;
+            this.tboxRole.AllowNull = false;
+            this.tboxRole.AutoFocus = false;
+            this.tboxRole.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxRole.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxRole.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxRole.BorderRadius = 3;
+            this.tboxRole.BorderSize = 1;
+            this.tboxRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxRole.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxRole.Location = new System.Drawing.Point(20, 44);
+            this.tboxRole.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxRole.Multiline = false;
+            this.tboxRole.Name = "tboxRole";
+            this.tboxRole.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxRole.PasswordChar = false;
+            this.tboxRole.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxRole.PlaceholderText = "";
+            this.tboxRole.ReadOnly = false;
+            this.tboxRole.Size = new System.Drawing.Size(973, 31);
+            this.tboxRole.TabIndex = 49;
+            this.tboxRole.Texts = "";
+            this.tboxRole.UnderlinedStyle = false;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.lblSection);
             this.panel2.Controls.Add(this.iconPictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -157,16 +158,16 @@ namespace PresentationLayer.Forms.Roles
             this.panel2.Size = new System.Drawing.Size(1044, 57);
             this.panel2.TabIndex = 62;
             // 
-            // label9
+            // lblSection
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(73, 18);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 25);
-            this.label9.TabIndex = 49;
-            this.label9.Text = "Datos del Rol";
+            this.lblSection.AutoSize = true;
+            this.lblSection.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection.ForeColor = System.Drawing.Color.White;
+            this.lblSection.Location = new System.Drawing.Point(73, 18);
+            this.lblSection.Name = "lblSection";
+            this.lblSection.Size = new System.Drawing.Size(143, 25);
+            this.lblSection.TabIndex = 49;
+            this.lblSection.Text = "Datos del Rol";
             // 
             // iconPictureBox1
             // 
@@ -202,7 +203,7 @@ namespace PresentationLayer.Forms.Roles
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Label lblSection;
 
         private System.Windows.Forms.Panel panel3;
 
@@ -212,7 +213,7 @@ namespace PresentationLayer.Forms.Roles
 
         private PresentationLayer.Components.CustomTextBox tboxName;
 
-        public PresentationLayer.Components.CustomTextBox tboxNombreRol;
+        public PresentationLayer.Components.CustomTextBox tboxRole;
 
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
 

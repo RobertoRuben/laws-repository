@@ -8,7 +8,7 @@ namespace BusinessLayer.Validators
     {
         public static void Validate(Rol rol)
         {
-            if (String.IsNullOrWhiteSpace(rol.NombreDeRol))
+            if (String.IsNullOrWhiteSpace(rol.RolName))
             {
                 throw new ValidationException("El nombre del rol no debe ser nulo");
             }

@@ -82,7 +82,7 @@ namespace PresentationLayer.Forms.User
             this.tboxBusqueda.TabIndex = 65;
             this.tboxBusqueda.Texts = "";
             this.tboxBusqueda.UnderlinedStyle = false;
-            this.tboxBusqueda._TextChanged += new System.EventHandler(this.tboxBusqueda_TextChanged);
+            this.tboxBusqueda._TextChanged += new System.EventHandler(this.SearchTbox_TextChanged);
             // 
             // btnLimpiarBusqueda
             // 
@@ -101,7 +101,7 @@ namespace PresentationLayer.Forms.User
             this.btnLimpiarBusqueda.Size = new System.Drawing.Size(42, 35);
             this.btnLimpiarBusqueda.TabIndex = 54;
             this.btnLimpiarBusqueda.UseVisualStyleBackColor = false;
-            this.btnLimpiarBusqueda.Click += new System.EventHandler(this.btnLimpiarBusqueda_Click);
+            this.btnLimpiarBusqueda.Click += new System.EventHandler(this.ClearSearchBtn_Click);
             // 
             // label13
             // 
@@ -192,7 +192,7 @@ namespace PresentationLayer.Forms.User
             this.btnInhabilitar.TabIndex = 66;
             this.btnInhabilitar.Text = "Inhabilitar";
             this.btnInhabilitar.UseVisualStyleBackColor = false;
-            this.btnInhabilitar.Click += new System.EventHandler(this.btnInhabilitar_Click);
+            this.btnInhabilitar.Click += new System.EventHandler(this.DisableBtn_Click);
             // 
             // btnModificar
             // 
@@ -214,7 +214,7 @@ namespace PresentationLayer.Forms.User
             this.btnModificar.TabIndex = 67;
             this.btnModificar.Text = "  Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            this.btnModificar.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
             // btnNuevo
             // 
@@ -236,7 +236,7 @@ namespace PresentationLayer.Forms.User
             this.btnNuevo.TabIndex = 65;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            this.btnNuevo.Click += new System.EventHandler(this.AddBtn_Click);
             // 
             // UserListForm
             // 

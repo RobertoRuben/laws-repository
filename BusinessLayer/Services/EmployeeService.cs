@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using BusinessLayer.Exceptions;
 using BusinessLayer.Validators;
 using DataLayer.Repositories;
@@ -19,39 +18,39 @@ namespace BusinessLayer.Services
             _employeeRepository = employeeRepository;
         }
 
-        public int Insert(Trabajador trabajador, int codUsuario)
+        public int Insert(Employee employee, int codUsuario)
         {
             try
             {
-                EmployeeValidator.Validate(trabajador);
+                EmployeeValidator.Validate(employee);
             }
             catch (ArgumentException ex)
             {
                 throw new ValidationException(ex.Message);
             }
 
-            if (_employeeRepository.Exists(trabajador.Dni))
+            if (_employeeRepository.Exists(employee.Dni))
             {
                 throw new BusinessException("El DNI ingresado ya se encuentra registrado en la base de datos");
             }
             
 
-            int idEmployee = _employeeRepository.Insert(trabajador, codUsuario);
+            int idEmployee = _employeeRepository.Insert(employee, codUsuario);
 
             return idEmployee;
         }
 
-        public bool Update(Trabajador trabajador, int codUsuario)
+        public bool Update(Employee employee, int codUsuario)
         {
             try
             {
-                EmployeeValidator.Validate(trabajador);
+                EmployeeValidator.Validate(employee);
             }
             catch (ArgumentException ex)
             {
                 throw new BusinessException(ex.Message);
             }
-            return _employeeRepository.Update(trabajador, codUsuario);
+            return _employeeRepository.Update(employee, codUsuario);
         }
 
         public bool Delete(int id, int codUsuario)
@@ -59,12 +58,12 @@ namespace BusinessLayer.Services
             return _employeeRepository.Delete(id, codUsuario);
         }
 
-        public List<Trabajador> GetAll(int pageSize, int pageNumber)
+        public List<Employee> GetAll(int pageSize, int pageNumber)
         {
             return _employeeRepository.GetAll(pageSize, pageNumber);
         }
 
-        public IEnumerable<Trabajador> FindBy(String pattern)
+        public IEnumerable<Employee> FindBy(String pattern)
         {
             var employee = _employeeRepository.FindBy(pattern);
 

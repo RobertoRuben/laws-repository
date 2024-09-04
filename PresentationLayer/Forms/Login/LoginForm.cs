@@ -15,38 +15,54 @@ namespace Presentacion.Formularios.Login
         public LoginForm(AuthService authService)
         {
             InitializeComponent();
+            tboxUser.Focus();
             _authService = authService;
+            
+            tboxUser.KeyPress += new KeyPressEventHandler(LoginBtn_KeyPress);
+            tboxPassword.KeyPress += new KeyPressEventHandler(LoginBtn_KeyPress);
         }
-        private void btnCerrar_Click(object sender, EventArgs e)
+        private void CloseBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void btnMinimizar_Click(object sender, EventArgs e)
+        private void MinimizeBtn_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
+        private void LoginBtn_Click(object sender, EventArgs e)
+        {
+            Login();
+        }
+        private void LoginBtn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Login();
+                e.Handled = true;
+            }
+        }
+
+        private void Login()
         {
             try
             {
-                string nombreUsuario = tboxUsuario.Texts.Trim();
-                string contraseña = tboxContraseña.Texts.Trim();
+                string userName = tboxUser.Texts.Trim();
+                string password = tboxPassword.Texts.Trim();
 
-                UserDTO userDto = _authService.Login(nombreUsuario, contraseña);
+                UserDTO userDto = _authService.Login(userName, password);
                 
-                // Serializa el objeto usuario a formato JSON para mostrarlo
                 string usuarioJson = JsonConvert.SerializeObject(userDto, Formatting.Indented);
                 MessageBox.Show(usuarioJson, "Datos del Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
                 OkMessage("Inicio de sesion exitoso");
                 
                 MainForm mainForm = new MainForm();
-                mainForm.nombreTrabajador = userDto.NombreTrabajador;
-                mainForm.nombreUsuario = userDto.NombreUsuario;
-                mainForm.nombreRol = userDto.NombreRol;
-                mainForm.idUsuario = userDto.CodUsuario;
+                mainForm.employeeName = userDto.EmployeeName;
+                mainForm.userName = userDto.UserName;
+                mainForm.rolName = userDto.RolName;
+                mainForm.userId = userDto.CodUser;
                 mainForm.Show();
                 this.Hide();
             }
@@ -54,7 +70,6 @@ namespace Presentacion.Formularios.Login
             {
                 ErrorMessage("Error de inicio de sesion: " + exception.Message);
             }
-
         }
         
         private void ErrorMessage(string message)
@@ -65,6 +80,15 @@ namespace Presentacion.Formularios.Login
         private void OkMessage(string message)
         {
             MessageBox.Show(message, "Operación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CloseBtn_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void MinimizeBtn_Click_1(object sender, EventArgs e){
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

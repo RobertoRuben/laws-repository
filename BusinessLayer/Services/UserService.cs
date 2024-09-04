@@ -12,49 +12,49 @@ namespace BusinessLayer.Services
 {
     public class UserService
     {
-        private readonly IUsuarioRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserService(IUsuarioRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
         
-        public int Insert(Usuario usuario, int codUsuario)
+        public int Insert(User user, int codUsuario)
         {
             try
             {
-                UserValidator.Validate(usuario);
+                UserValidator.Validate(user);
             }
             catch (ArgumentException ex)
             {
                 throw new ValidationException(ex.Message);
             }
             
-            if (_userRepository.Exists(usuario.NombreUsuario))
+            if (_userRepository.Exists(user.UserName))
             {
-                throw new BusinessException("El nombre de usuario ya existe");
+                throw new BusinessException("El nombre de user ya existe");
             }
 
-            usuario.Contraseña = PasswordEncryptor.Encryptor(usuario.Contraseña);
+            user.Password = PasswordEncryptor.Encryptor(user.Password);
 
-            int userId = _userRepository.Insert(usuario, codUsuario);
+            int userId = _userRepository.Insert(user, codUsuario);
 
             return userId;
         }
 
-        public bool Update(Usuario usuario, int codUsuario)
+        public bool Update(User user, int codUsuario)
         {
             try
             {
-                UpdatePasswordValidator.Validate(usuario);
+                UpdatePasswordValidator.Validate(user);
             }
             catch (ArgumentException ex)
             {
                 throw new ValidationException(ex.Message);
             }
-            usuario.Contraseña = PasswordEncryptor.Encryptor(usuario.Contraseña);
+            user.Password = PasswordEncryptor.Encryptor(user.Password);
             
-            return _userRepository.Update(usuario, codUsuario);
+            return _userRepository.Update(user, codUsuario);
         }
 
         public bool Disable(int id, int codUsuario)

@@ -27,7 +27,7 @@ namespace BusinessLayer.Services
                 throw new ValidationException(ex.Message);
             }
 
-            if (_rolRepository.Exists(rol.NombreDeRol))
+            if (_rolRepository.Exists(rol.RolName))
             {
                 throw new BusinessException("El nombre del rol ya existe");
             }
@@ -47,7 +47,7 @@ namespace BusinessLayer.Services
             {
                 throw new ValidationException(ex.Message);
             }
-            if (_rolRepository.Exists(rol.NombreDeRol))
+            if (_rolRepository.Exists(rol.RolName))
             {
                 throw new BusinessException("No se puede actualizar a un nombre de rol ya existente");
             }

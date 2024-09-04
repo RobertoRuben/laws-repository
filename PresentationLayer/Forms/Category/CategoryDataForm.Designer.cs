@@ -32,13 +32,13 @@ namespace Presentacion.Formularios.CategoriaNormas
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblSection = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.tboxNombreRol = new PresentationLayer.Components.CustomTextBox();
+            this.tboxCategoryName = new PresentationLayer.Components.CustomTextBox();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnSalir = new FontAwesome.Sharp.IconButton();
             this.panel2.SuspendLayout();
@@ -50,7 +50,7 @@ namespace Presentacion.Formularios.CategoriaNormas
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.lblSection);
             this.panel2.Controls.Add(this.iconPictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -58,16 +58,16 @@ namespace Presentacion.Formularios.CategoriaNormas
             this.panel2.Size = new System.Drawing.Size(1044, 57);
             this.panel2.TabIndex = 63;
             // 
-            // label9
+            // lblSection
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(73, 18);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(235, 25);
-            this.label9.TabIndex = 49;
-            this.label9.Text = "Datos de la Categoría";
+            this.lblSection.AutoSize = true;
+            this.lblSection.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection.ForeColor = System.Drawing.Color.White;
+            this.lblSection.Location = new System.Drawing.Point(73, 18);
+            this.lblSection.Name = "lblSection";
+            this.lblSection.Size = new System.Drawing.Size(235, 25);
+            this.lblSection.TabIndex = 49;
+            this.lblSection.Text = "Datos de la Categoría";
             // 
             // iconPictureBox1
             // 
@@ -120,7 +120,7 @@ namespace Presentacion.Formularios.CategoriaNormas
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.tboxNombreRol);
+            this.panel3.Controls.Add(this.tboxCategoryName);
             this.panel3.Location = new System.Drawing.Point(12, 17);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1015, 123);
@@ -133,33 +133,34 @@ namespace Presentacion.Formularios.CategoriaNormas
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(73)))), ((int)(((byte)(85)))));
             this.label1.Location = new System.Drawing.Point(15, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(312, 19);
+            this.label1.Size = new System.Drawing.Size(292, 19);
             this.label1.TabIndex = 50;
-            this.label1.Text = "Nombre de la categoria de la norma";
+            this.label1.Text = "Nombre de la categoria de norma";
             // 
-            // tboxNombreRol
+            // tboxCategoryName
             // 
-            this.tboxNombreRol.AllowNull = false;
-            this.tboxNombreRol.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxNombreRol.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
-            this.tboxNombreRol.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
-            this.tboxNombreRol.BorderRadius = 3;
-            this.tboxNombreRol.BorderSize = 1;
-            this.tboxNombreRol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNombreRol.ForeColor = System.Drawing.Color.DimGray;
-            this.tboxNombreRol.Location = new System.Drawing.Point(20, 44);
-            this.tboxNombreRol.Margin = new System.Windows.Forms.Padding(4);
-            this.tboxNombreRol.Multiline = false;
-            this.tboxNombreRol.Name = "tboxNombreRol";
-            this.tboxNombreRol.Padding = new System.Windows.Forms.Padding(7);
-            this.tboxNombreRol.PasswordChar = false;
-            this.tboxNombreRol.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.tboxNombreRol.PlaceholderText = "";
-            this.tboxNombreRol.ReadOnly = false;
-            this.tboxNombreRol.Size = new System.Drawing.Size(973, 31);
-            this.tboxNombreRol.TabIndex = 49;
-            this.tboxNombreRol.Texts = "";
-            this.tboxNombreRol.UnderlinedStyle = false;
+            this.tboxCategoryName.AllowNull = false;
+            this.tboxCategoryName.AutoFocus = false;
+            this.tboxCategoryName.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxCategoryName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(193)))), ((int)(((byte)(202)))));
+            this.tboxCategoryName.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(168)))), ((int)(((byte)(86)))));
+            this.tboxCategoryName.BorderRadius = 3;
+            this.tboxCategoryName.BorderSize = 1;
+            this.tboxCategoryName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxCategoryName.ForeColor = System.Drawing.Color.DimGray;
+            this.tboxCategoryName.Location = new System.Drawing.Point(20, 44);
+            this.tboxCategoryName.Margin = new System.Windows.Forms.Padding(4);
+            this.tboxCategoryName.Multiline = false;
+            this.tboxCategoryName.Name = "tboxCategoryName";
+            this.tboxCategoryName.Padding = new System.Windows.Forms.Padding(7);
+            this.tboxCategoryName.PasswordChar = false;
+            this.tboxCategoryName.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tboxCategoryName.PlaceholderText = "";
+            this.tboxCategoryName.ReadOnly = false;
+            this.tboxCategoryName.Size = new System.Drawing.Size(973, 31);
+            this.tboxCategoryName.TabIndex = 49;
+            this.tboxCategoryName.Texts = "";
+            this.tboxCategoryName.UnderlinedStyle = false;
             // 
             // btnSave
             // 
@@ -227,13 +228,13 @@ namespace Presentacion.Formularios.CategoriaNormas
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
-        public PresentationLayer.Components.CustomTextBox tboxNombreRol;
+        public PresentationLayer.Components.CustomTextBox tboxCategoryName;
         private FontAwesome.Sharp.IconButton btnSave;
         private FontAwesome.Sharp.IconButton btnSalir;
         private FontAwesome.Sharp.IconButton iconButton1;
 
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Label lblSection;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
 
         #endregion

@@ -7,15 +7,15 @@ using System.Collections.Generic;
 
 namespace DataLayer.Repositories
 {
-    public class CategoriaRepository : IRepository<CategoriaDeNorma>
+    public class CategoryRepository : IRepository<CategoryLaw>
     {
-        public int Insert(CategoriaDeNorma entity, int codUsuario)
+        public int Insert(CategoryLaw entity, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_CategoriaNorma_Registrar", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@TipoDeNorma", entity.TipoDeNorma);
+                cmd.Parameters.AddWithValue("@TipoDeNorma", entity.CategoryName);
                 cmd.Parameters.AddWithValue("@CodUsuario", codUsuario);
 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
@@ -39,14 +39,14 @@ namespace DataLayer.Repositories
             }
         }
 
-        public bool Update(CategoriaDeNorma entity, int codUsuario)
+        public bool Update(CategoryLaw entity, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_CategoriaNorma_Actualizar", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CodCategoriaNorma", entity.CodTipoNorma);
-                cmd.Parameters.AddWithValue("@TipoDeNorma", entity.TipoDeNorma);
+                cmd.Parameters.AddWithValue("@CodCategoriaNorma", entity.CodCategory);
+                cmd.Parameters.AddWithValue("@TipoDeNorma", entity.CategoryName);
                 cmd.Parameters.AddWithValue("@CodUsuario", codUsuario);
 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
@@ -72,7 +72,7 @@ namespace DataLayer.Repositories
 
         public bool Delete(int id, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_CategoriaNorma_Eliminar", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -99,11 +99,11 @@ namespace DataLayer.Repositories
                 }
             }
         }
-        public List<CategoriaDeNorma> GetAll()
+        public List<CategoryLaw> GetAll()
         {
-            var categorias = new List<CategoriaDeNorma>(); 
+            var categorias = new List<CategoryLaw>(); 
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_CategoriaNorma_Listar", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -115,10 +115,10 @@ namespace DataLayer.Repositories
                     {
                         while (reader.Read())
                         {
-                            var categoria = new CategoriaDeNorma
+                            var categoria = new CategoryLaw
                             {
-                                CodTipoNorma = reader.GetInt32(reader.GetOrdinal("Codigo")),
-                                TipoDeNorma = reader.GetString(reader.GetOrdinal("Categoria de Norma"))
+                                CodCategory = reader.GetInt32(reader.GetOrdinal("Codigo")),
+                                CategoryName = reader.GetString(reader.GetOrdinal("Categoria de Norma"))
                             };
                             categorias.Add(categoria);
                         }
@@ -135,15 +135,15 @@ namespace DataLayer.Repositories
             }
             return categorias;
         }
-        public CategoriaDeNorma GetById(int id)
+        public CategoryLaw GetById(int id)
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<CategoriaDeNorma> FindBy(string pattern)
+        public IEnumerable<CategoryLaw> FindBy(string pattern)
         {
-            var categorias = new List<CategoriaDeNorma>();
+            var categorias = new List<CategoryLaw>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_CategoriaNorma_Buscar", conn)
                 {
@@ -159,10 +159,10 @@ namespace DataLayer.Repositories
                     {
                         while (reader.Read())
                         {
-                            var categoria = new CategoriaDeNorma
+                            var categoria = new CategoryLaw
                             {
-                                CodTipoNorma = reader.GetInt32(reader.GetOrdinal("Codigo")),
-                                TipoDeNorma = reader.GetString(reader.GetOrdinal("Categoria de Norma"))
+                                CodCategory = reader.GetInt32(reader.GetOrdinal("Codigo")),
+                                CategoryName = reader.GetString(reader.GetOrdinal("Categoria de Norma"))
                             };
                             categorias.Add(categoria);
                         }
@@ -182,7 +182,7 @@ namespace DataLayer.Repositories
         
         public bool Exists(IComparable searchValue)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("Sp_CategoriaNorma_Existe", conn)
                 {

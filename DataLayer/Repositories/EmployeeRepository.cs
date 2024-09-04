@@ -11,9 +11,9 @@ namespace DataLayer.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        public int Insert(Trabajador entity, int codUsuario)
+        public int Insert(Employee entity, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("sp_Trabajador_Registrar", conn)
                 {
@@ -21,10 +21,10 @@ namespace DataLayer.Repositories
                 };
 
                 cmd.Parameters.AddWithValue("@Dni", entity.Dni);
-                cmd.Parameters.AddWithValue("@Nombre", entity.Nombre);
-                cmd.Parameters.AddWithValue("@ApellidoPaterno", entity.ApellidoPaterno);
-                cmd.Parameters.AddWithValue("@ApellidoMaterno", entity.ApellidoMaterno);
-                cmd.Parameters.AddWithValue("@Sexo", entity.Sexo);
+                cmd.Parameters.AddWithValue("@Nombre", entity.EmployeeName);
+                cmd.Parameters.AddWithValue("@ApellidoPaterno", entity.PaternalSurname);
+                cmd.Parameters.AddWithValue("@ApellidoMaterno", entity.MaternalSurname);
+                cmd.Parameters.AddWithValue("@Sexo", entity.Gender);
 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
                 rptaParam.Direction = ParameterDirection.Output;
@@ -47,21 +47,21 @@ namespace DataLayer.Repositories
             }
         }
 
-        public bool Update(Trabajador entity, int codUsuario)
+        public bool Update(Employee entity, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("sp_Trabajador_Actualizar", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
 
-                cmd.Parameters.AddWithValue("@CodTrabajador", entity.CodTrabajador);
+                cmd.Parameters.AddWithValue("@CoddTrabajador", entity.CodEmployee);
                 cmd.Parameters.AddWithValue("@Dni", entity.Dni);
-                cmd.Parameters.AddWithValue("@Nombre", entity.Nombre);
-                cmd.Parameters.AddWithValue("@ApellidoPaterno", entity.ApellidoPaterno);
-                cmd.Parameters.AddWithValue("@ApellidoMaterno", entity.ApellidoMaterno);
-                cmd.Parameters.AddWithValue("@Sexo", entity.Sexo);
+                cmd.Parameters.AddWithValue("@Nombre", entity.EmployeeName);
+                cmd.Parameters.AddWithValue("@ApellidoPaterno", entity.PaternalSurname);
+                cmd.Parameters.AddWithValue("@ApellidoMaterno", entity.MaternalSurname);
+                cmd.Parameters.AddWithValue("@Sexo", entity.Gender);
 
                 SqlParameter rptaParam = new SqlParameter("@Rpta", SqlDbType.Int);
                 rptaParam.Direction = ParameterDirection.Output;
@@ -80,7 +80,6 @@ namespace DataLayer.Repositories
                 }
                 finally
                 {
-                    // Asegurar que la conexión se cierra siempre
                     if (conn.State == ConnectionState.Open) conn.Close();
                 }
             }
@@ -88,7 +87,7 @@ namespace DataLayer.Repositories
 
         public bool Delete(int id, int codUsuario)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("sp_Trabajador_Eliminar", conn)
                 {
@@ -119,18 +118,17 @@ namespace DataLayer.Repositories
             }
         }
 
-        public List<Trabajador> GetAll(int pageSize, int pageNumber)
+        public List<Employee> GetAll(int pageSize, int pageNumber)
         {
-            var trabajadores = new List<Trabajador>();
+            var trabajadores = new List<Employee>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
-                SqlCommand cmd = new SqlCommand("sp_Trabajador_Listar_Paginacion", conn)
+                SqlCommand cmd = new SqlCommand("sp_Trabajador_Listar", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
                 
-                // Configura los parámetros para la paginación
                 cmd.Parameters.AddWithValue("@PageSize", pageSize);
                 cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
 
@@ -141,14 +139,14 @@ namespace DataLayer.Repositories
                     {
                         while (reader.Read())
                         {
-                            var trabajador = new Trabajador
+                            var trabajador = new Employee
                             {
-                                CodTrabajador = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
+                                CodEmployee = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
                                 Dni = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("Dni"))),
-                                Nombre = reader.GetString(reader.GetOrdinal("Nombre")),
-                                ApellidoPaterno = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
-                                ApellidoMaterno = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
-                                Sexo = reader.GetString(reader.GetOrdinal("Sexo"))[0] 
+                                EmployeeName = reader.GetString(reader.GetOrdinal("Nombre")),
+                                PaternalSurname = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
+                                MaternalSurname = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
+                                Gender = reader.GetString(reader.GetOrdinal("Sexo"))[0] 
                             };
                             trabajadores.Add(trabajador);
                         }
@@ -166,16 +164,16 @@ namespace DataLayer.Repositories
             return trabajadores;
         }
 
-        public Trabajador GetById(int id)
+        public Employee GetById(int id)
         {
             throw new NotImplementedException();
         }
         
-        public IEnumerable<Trabajador> FindBy(string pattern)
+        public IEnumerable<Employee> FindBy(string pattern)
         {
-            var trabajadores = new List<Trabajador>();
+            var trabajadores = new List<Employee>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("sp_Trabajador_Buscar", conn)
                 {
@@ -191,14 +189,14 @@ namespace DataLayer.Repositories
                     {
                         while (reader.Read())
                         {
-                            var trabajador = new Trabajador
+                            var trabajador = new Employee
                             {
-                                CodTrabajador = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
+                                CodEmployee = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
                                 Dni = Convert.ToInt32(reader.GetDecimal(reader.GetOrdinal("Dni"))),
-                                Nombre = reader.GetString(reader.GetOrdinal("Nombre")),
-                                ApellidoPaterno = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
-                                ApellidoMaterno = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
-                                Sexo = reader.GetString(reader.GetOrdinal("Sexo"))[0] 
+                                EmployeeName = reader.GetString(reader.GetOrdinal("Nombre")),
+                                PaternalSurname = reader.GetString(reader.GetOrdinal("ApellidoPaterno")),
+                                MaternalSurname = reader.GetString(reader.GetOrdinal("ApellidoMaterno")),
+                                Gender = reader.GetString(reader.GetOrdinal("Sexo"))[0] 
                             };
                             trabajadores.Add(trabajador);
                         }
@@ -220,7 +218,7 @@ namespace DataLayer.Repositories
         
         public bool Exists(IComparable searchValue)
         {
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("sp_Trabajador_Existe", conn)
                 {
@@ -255,7 +253,7 @@ namespace DataLayer.Repositories
         {
             List<EmployeeDTO> employees = new List<EmployeeDTO>();
 
-            using (var conn = Conexion.getInstancia().CrearConexion())
+            using (var conn = Conexion.getInstancia().CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("sp_Trabajador_ObtenerNombreCompleto", conn)
                 {
@@ -271,7 +269,7 @@ namespace DataLayer.Repositories
                         {
                             employees.Add(new EmployeeDTO
                             {
-                                CodTrabajador = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
+                                CodEmployee = reader.GetInt32(reader.GetOrdinal("CodTrabajador")),
                                 FullName = reader.GetString(reader.GetOrdinal("FullName"))
                             });
                         }

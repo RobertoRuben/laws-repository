@@ -6,33 +6,33 @@ namespace BusinessLayer.Validators
 {
     public static class EmployeeValidator
     {
-        public static void Validate(Trabajador trabajador)
+        public static void Validate(Employee employee)
         {
-            if (String.IsNullOrWhiteSpace(Convert.ToString(trabajador.Dni)) )
+            if (String.IsNullOrWhiteSpace(Convert.ToString(employee.Dni)) )
             {
                 throw new ValidationException("El dni del trabajador no puede quedar vacio.");
             }
-            else if (Convert.ToString(trabajador.Dni).Length != 8)
+            else if (Convert.ToString(employee.Dni).Length != 8)
             {
                 throw new ValidationException("El DNI del trabajador debe tener exactamente 8 dígitos.");
             }
 
-            if (String.IsNullOrWhiteSpace(trabajador.Nombre))
+            if (String.IsNullOrWhiteSpace(employee.EmployeeName))
             {
                 throw new ValidationException("El nombre del trabajador no puede quedar vacio.");
             }
 
-            if (String.IsNullOrWhiteSpace(trabajador.ApellidoPaterno))
+            if (String.IsNullOrWhiteSpace(employee.PaternalSurname))
             {
                 throw new ValidationException("El apellido paterno del trabajador no puede quedar vacio.");
             }
 
-            if (String.IsNullOrWhiteSpace(trabajador.ApellidoMaterno))
+            if (String.IsNullOrWhiteSpace(employee.MaternalSurname))
             {
                 throw new ValidationException("El apellido materno del trabajador no puede quedar vacio.");
             }
 
-            if (String.IsNullOrWhiteSpace(Convert.ToString(trabajador.Sexo)))
+            if (String.IsNullOrWhiteSpace(Convert.ToString(employee.Gender)))
             {
                 throw new ValidationException("El campo sexo del trabajador es obligatorio.");
             }
